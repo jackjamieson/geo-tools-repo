@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/pure-min.css">
+		<link rel="stylesheet" href="css/buttons-min.css">
+		<link rel="stylesheet" href="css/menus-min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+
+
+	</head>
+	<title>Geologic Web Utilites - Excel to GE</title>
+	<body>
+		<div class="page">
+			<div id="topNav"></div>
+
+
+			<div class="content">
+<h2>Excel to KML Converter</h2>
+				Excel geologic symbols and circles to KML.  Copy and paste directly from the spreadsheet.
+				<p></p><b>KML Name: </b><input type='text' id='name' size="10" placeholder="fractures">
+				<br><b>Anno Spacing:</b><br> Bed and layer dip line (~1.5 m): <input type='text' id='td1' size="5" placeholder="3">
+				<br>Joint, arrow, slip-line (~ 8.0 m) or 5-m 3D circle: <input type='text' id='td2' size="5" placeholder="9"><p></p>
+				<textarea name="textarea" id="excel" rows="20" cols="100"></textarea>
+				<p></p><a href="#" download="output.kml" class="pure-button pure-button-primary" id="generate" >Generate KML</a>
+
+			</div>
+
+			<div id="foot" class="foot"></div>
+		</div>
+
+	</body>
+
+	<script src='js/nav.js'></script>
+	<script src='js/yui-min.js'></script>
+
+	<script src='js/jquery-1.11.1.min.js'></script>
+	<script src='js/etg.js'></script>
+
+</html>
+

@@ -1,0 +1,78 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height:100%
+
+}
+html { 
+	min-height:100%;/* make sure it is at least as tall as the viewport */
+	
+	 }
+
+
+.clear { clear: both; }
+
+.page {
+	  min-height:100%;
+  
+		
+
+}
+
+#header {
+	background: #e3da9d;
+	padding: 15px 0 15px 15px;
+}
+
+#content {
+	padding: 15px 30px 0 0;
+	min-height:100%
+	}
+	#main-content {
+		height: 100%;
+		margin-left: 320px;
+		
+		
+	}
+
+#sidebar {
+	font-size:9pt;
+	width: 300px;
+	float: left;
+	height:100vh;
+	padding: 0 2px 0 15px;
+	}
+	#sidebar ul {
+		list-style: inside;
+	}
+
+#upload{
+    display:none
+}
+
+#symbols{
+
+	display:block;
+}
+
+#helpdoc
+{
+	padding:20px;
+	padding-left:200px;
+	padding-right:200px;
+	
+}
+
+.linkBack{
+
+	font-size:16pt;
+}
+
+#lat1, #lon1, #alt1, #lat2, #lon2, #alt2 ,#lat3, #lon3, #alt3{
+    width:5em;
+}
+
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/pure-min.css">
+		<link rel="stylesheet" href="css/buttons-min.css">
+		<link rel="stylesheet" href="css/menus-min.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body onload="clearIt.reset();">
+		<title>Geologic Web Utilities - Atlas Sheet Conversion</title>
+		<div class="page">
+
+			<div id="topNav"></div>
+
+
+			<div class="content">
+				<p></p>
+				<h2>Atlas Sheet Conversions</h2>
+
+				<div id="radios">
+					<form class="type" name="clearIt">
+						<input type="radio" name="type" checked="checked" value="atToLatr"> Atlas Sheet to Lat/Long<br>
+						<input type="radio" name="type" value="latToAtr"> Lat/Long to Atlas Sheet<br>
+						<input type="radio" name="type" value="batchAt"> Batch Atlas Conversion<br>
+					</form>
+				</div> 
+
+				<br>
+				<div id="atToLat">
+					This tool converts Atlas Sheet Coordinates into 3 different formats.
+					<p><i>Input example: 22 : 12 : 123 to represent 22-12-1-2-3.  Click Calculate and the results will be displayed below.</i>
+
+					<h3>Atlas Sheet Coordinates:</h3>
+					<div class='inputs'>
+						<input type='text' id='firstBlock' size="2" maxlength="2" autofocus="true"><strong> : </strong>
+
+						<input type='text' id='secondBlock' size="2" maxlength="2" autofocus="true"><strong> : </strong>
+
+						<input type='text' id='thirdBlock' size="3" maxlength="3" autofocus="true">
+					</div>
+
+					<br>
+
+					<a href="#" class="pure-button pure-button-primary" id="go">Calculate</a>
+
+					<h3>Output:</h3>
+					<div id="error"></div>
+					<div id="outputDMS"><strong>ddmmss.ss (NAD27): </strong></div>
+					<div id="outputDeg"><strong>Decimal Degrees (NAD27): </strong></div>
+					<div id="outputQuad"><strong>USGS Quadrangle: </strong></div>
+
+				</div>
+
+				<div id="latToAt">
+					This tool converts Latitude/Longitude coordinates into Atlas Sheet Coordinates.
+					<p><i>Input example: Lat 411752 Long 743845 (no negatives).  Click Calculate and the results will be displayed below.</i>
+
+					<h3>DDMMSS (NAD27) Coordinates:</h3>
+					<div class='inputs'>
+						Latitude <input type='text' id='dmsLat' size="6" maxlength="6" autofocus="true">
+						Longitude <input type='text' id='dmsLon' size="6" maxlength="6" >
+
+					</div>
+					<br>
+					<a href="#" class="pure-button pure-button-primary" id="goDMS">Calculate</a>
+
+					<p>OR</p>
+
+					<i>Input example: Lat 41.2981481 Long 74.6462963 (no negatives). Click Calculate and the results will be displayed below. </i>
+					<h3>Decimal Degree (NAD27):</h3>
+					<div class='inputs'>
+						Latitude <input type='text' id='dmsDLat' size="6"  >
+						Longitude <input type='text' id='dmsDLon' size="6" >
+
+					</div>
+
+					<br>
+
+					<a href="#" class="pure-button pure-button-primary" id="goDeg">Calculate</a>
+
+					<h3>Output:</h3>
+					<div id="errorDMS"></div>
+					<div id="outputSheet"><strong>Atlas Sheet Coordinates: </strong></div>
+					<div id="outputQuadDMS"><strong>USGS Quadrangle: </strong></div>
+
+
+				</div>
+
+				<div id="batch">
+					This tool batch converts Atlas Sheet Coordinates into 3 different formats.
+					<br>It can also output in a format for converting NAD27 Decimal Degree to NAD83 DDMMSS.  Check the box above the output to select this option.
+					You can save this file and import it by going to the NADCON link in the dropdown menu.  <a href="help.html">See the help file for more information.</a>
+					<p><strong>The checkbox must be checked to download or export.</strong>
+					<p><i>Input example: "22:12:123" without the quotes, one per line.  Click Calculate and the results will be displayed to the right.</i>
+
+					<h3>Atlas Sheet Coordinates: <span style="margin-left:30px;">Output: </span></h3>
+					<input type="checkbox" id="chx" name="frmt" style="margin-left:247px;" value="NADCON"> Format for NADCON / KML<br>
+					<div class='inputs'>
+						<textarea name="textarea" id="batchArea" rows="15" cols="20"></textarea>
+						<textarea style="margin-left:60px;" name="outputArea" id="batchAreaOut" rows="15" cols="80"></textarea>
+
+					</div>
+
+					<br>
+
+					<a href="#" class="pure-button pure-button-primary" id="goBatchAt">Calculate</a>
+					<a href="#" download="batchOutput.txt" class="pure-button pure-button-primary" id="download">Download Output</a>
+					<a href="#" download="batchGEPoints.kml" class="pure-button pure-button-primary" id="export">Export KML (NAD27)</a>
+
+
+
+				</div>
+			</div>
+
+
+
+
+		<div id="foot" class="foot"></div>
+					</div>
+
+
+
+	</body>
+
+	<!-- Scripts at the bottom so the page loads faster !-->
+	<script src='js/nav.js'></script>
+	<script src='js/jquery-1.11.1.min.js'></script>
+	<script src="js/NAD27.js" type="text/javascript"></script>
+	<script src="js/njgsConversionUtil.js" type="text/javascript"></script>
+	<script src="js/atlasJQ.js" type="text/javascript"></script>
+	<script src='js/yui-min.js'></script>
+
+</html>
+
