@@ -16,7 +16,7 @@ divNav.innerHTML = 	'<nav>' +
 	'<li><a href="help.html">Conversion Tools Help</a></li>'+
 	'</ul>'+
 	'</li>'+
-	'<li><a href="3pp.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
+	'<li><a href="3ppfull.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
 	'<li><a href="exceltoKML.html">Excel to KML Formatter</a></li>'
 '</ul>'+
 
