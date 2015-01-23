@@ -8,6 +8,7 @@ divNav.innerHTML = 	'<nav>' +
 	'<li>'+
 	'<a href="#">Coordinate Conversion Tools</a>'+
 	'<ul>'+
+    '<li><a href="fdmconvert.html">Field Data Management to CSV</a></li>'+
 	'<li><a href="atlas.html">NJ Atlas Sheet Coordinates to NAD27</a></li>'+
 	'<li><a href="dmsdeg.html">NAD27 Decimal Degree to DDMMSS</a></li>'+
 	'<li><a href="http://www.ngs.noaa.gov/cgi-bin/nadcon.prl" target="_blank" >NADCON NAD27 Decimal Degree to NAD83 DDMMSS (external)</a></li>'+
