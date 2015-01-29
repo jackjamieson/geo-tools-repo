@@ -12,7 +12,8 @@ var stationLine = {
     kind: "",
     strike: "",
     dip: "",
-    direction: ""
+    direction: "",
+    azimuth: ""
 }; //station object
 var stationArray = new Array();
 
@@ -78,7 +79,7 @@ function init() {
 function reset() {
 
     inputText = "";
-    outputText = "STATION,DOMAIN,UNIT,TYPE,KIND,DIP,DIPAZIMUTH";
+    outputText = "STATION,DOMAIN,UNIT,TYPE,KIND,STRIKE,DIP,DIRECTION,AZIMUTH";
     stationArray.length = 0;
 }
 
@@ -103,7 +104,7 @@ function parseFile(inputText) {
             stationIndex++;
         }
 
-        for (var p = line; p < stationIndex; p++) {
+        for (var p = line; p < stationIndex-3; p++) {
 
             stationLine = {}; //reset the object
 
@@ -134,30 +135,36 @@ function parseFile(inputText) {
                 sdd = lines[p + 2].split(","); //split the strike, dip, etc
 
                 addFeatures(lines[p], lines[p + 1], sdd);
+                p++;
+
 
             } else if (lines[p].indexOf("FR") != -1 || lines[p].indexOf("LAY") != -1 || lines[p].indexOf("SZ") != -1) {
 
                 sdd = lines[p + 2].split(","); //split the strike, dip, etc
-
+                
                 addFeatures(lines[p], lines[p + 1], sdd);
+                p++;
 
             } else if (lines[p].indexOf("ST") != -1 || lines[p].indexOf("V") != -1 || lines[p].indexOf("SP") != -1) {
 
                 sdd = lines[p + 2].split(","); //split the strike, dip, etc
-
+                
                 addFeatures(lines[p], lines[p + 1], sdd);
+                p++;
 
             } else if (lines[p].indexOf("P") != -1 || lines[p].indexOf("SS") != -1) {
 
                 sdd = lines[p + 2].split(","); //split the strike, dip, etc
-
+                
                 addFeatures(lines[p], lines[p + 1], sdd);
+                p++;
 
             } else if (lines[p].indexOf("L") != -1 || lines[p].indexOf("FI") != -1 || lines[p].indexOf("SL") != -1) {
 
                 sdd = lines[p + 2].split(","); //split the strike, dip, etc
-
+                
                 addFeatures(lines[p], lines[p + 1], sdd);
+                p++;
 
             }
 
@@ -167,6 +174,7 @@ function parseFile(inputText) {
         line = stationIndex;
     }
 }
+
 
 function addFeatures(type, kind, sdd) {
 
@@ -182,8 +190,15 @@ function addFeatures(type, kind, sdd) {
     stationLine.strike = sdd[0];
     stationLine.dip = sdd[1];
     if (sdd.length > 2)
+    {
         stationLine.direction = sdd[2];
-    else stationLine.direction = "";
+        stationLine.azimuth = sdd[3];
+    }
+    else {
+        stationLine.direction = "";
+        stationLine.azimuth = "";
+
+    }
 
     
     stationArray.push(stationLine);
@@ -196,8 +211,8 @@ function writeFile() {
     outputText += '\n';
     stationArray.forEach(function (entry) {
         outputText += entry.station + ',' + entry.domain + ',' + entry.unit +
-            ',' + entry.type + ',' + entry.kind + ',' + entry.dip + ',' +
-            entry.strike + '\n';
+            ',' + entry.type + ',' + entry.kind + ',' + entry.strike + ',' +
+            entry.dip + ',' + entry.direction + ',' + entry.azimuth + '\n';
     });
 
     outputText = outputText.replace(/\r?|\r/g, ''); //remove carriage returns(from old .fd files)
@@ -210,6 +225,10 @@ function convertSDD(sdd) {
     
     var strike = sdd[0];
     var dip = sdd[1];
+    var azimuth = "";
+    sdd.push(azimuth);
+    sdd[3] = "";
+    
     strike = parseInt(strike)
 
     //only perform conversions for items with a direction
@@ -220,22 +239,22 @@ function convertSDD(sdd) {
         if (strike <= 90 && (direction.indexOf("S") != -1 || direction.indexOf("E") != -1)) {
                 
             strike += 90;
-            sdd[0] = strike;
+            sdd[3] = strike;
         }
         else if(strike <= 90 && (direction.indexOf("N") != -1 || direction.indexOf("W") != -1)) {
             
             strike += 270;
-            sdd[0] = strike;
+            sdd[3] = strike;
         }
         else if(strike > 90 && (direction.indexOf("N") != -1 || direction.indexOf("E") != -1)) {
             
             strike -= 90;
-            sdd[0] = strike;
+            sdd[3] = strike;
         }
         else if(strike > 90 && (direction.indexOf("S") != -1 || direction.indexOf("W") != -1)) {
             
             strike += 90;
-            sdd[0] = strike;
+            sdd[3] = strike;
         }
     }
 
