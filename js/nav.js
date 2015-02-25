@@ -6,7 +6,7 @@ divNav.innerHTML = 	'<nav>' +
 	'<ul>' +
 	'<li><a href="index.html">Home</a></li>' +
 	'<li>'+
-	'<a href="#">Coordinate Conversion Tools</a>'+
+	'<a href="#">Conversion Tools</a>'+
 	'<ul>'+
     '<li><a href="fdmconvert.html">Field Data Management to CSV</a></li>'+
 	'<li><a href="atlas.html">NJ Atlas Sheet Coordinates to NAD27</a></li>'+
@@ -18,7 +18,8 @@ divNav.innerHTML = 	'<nav>' +
 	'</ul>'+
 	'</li>'+
 	'<li><a href="3ppfull.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
-	'<li><a href="exceltoKML.html">Excel to KML Formatter</a></li>'
+	'<li><a href="exceltoKML.html">Excel to KML Formatter</a></li>' +
+	'<li><a href="xmlgen.html">XML Metadata Generator</a></li>'
 '</ul>'+
 
 	'</nav><hr></hr>';
@@ -39,4 +40,3 @@ footer.innerHTML = 	'<hr><br>Developed by Jack Jamieson and Greg Herman.  No rig
 //'<br><br>' +
 //'<img src="img/DEPLOGOsm2.jpg"/>' +
 //'<img src="img/njlogsm.png"/>';
-

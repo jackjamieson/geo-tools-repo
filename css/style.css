@@ -4,8 +4,8 @@ padding: 50px;
 }
 
 .foot {
-	
-	
+
+
 	text-align:center;
 	font-size:10pt;
 }
@@ -23,14 +23,14 @@ padding: 50px;
 	font-weight:bold;
 }
 
-.pure-menu.pure-menu-horizontal, .pure-menu.pure-menu-horizontal .pure-menu-heading { 
+.pure-menu.pure-menu-horizontal, .pure-menu.pure-menu-horizontal .pure-menu-heading {
 	display:inline-block;
 }
 
 .pure-menu a, .pure-menu .pure-menu-can-have-children > li:after {
 
 	color:#000;
-	
+
 }
 
 .pure-menu .pure-menu-selected a {
@@ -79,33 +79,33 @@ nav ul {
 	position: relative;
 	display:block;
 	}
-	
+
 nav ul li {
 	float:left;
 	display:list-item;
-	list-style: none; 
-	
+	list-style: none;
+
 	background-color:#fff;
 	border-bottom: 5px solid #0078E7;
 	}
 
 nav ul li a {
 	display:block;
-	padding:15px 10px;	
-	
+	padding:15px 10px;
+
 	color:#000;
-	
+
 	text-decoration:none;
 }
 
 li a:hover { background-color: #eee; }
 
-	
+
 /* Change this in order to change the Dropdown symbol */
-li > a:after { content: ' »'; } 
-li > a:only-child:after { content: ''; }  	
-	
-	
+li > a:after { content: ' »'; }
+li > a:only-child:after { content: ''; }
+
+
 /* The Dropdown Styles */
 /* =================== */
 
@@ -114,15 +114,15 @@ nav ul ul {
 	display: none;
 	position: absolute; top: 53px;
 }
-	
+
 /* Display Dropdowns on Hover */
 nav ul li:hover > ul {
 	display:list-item;
 }
-	
+
 /* Fisrt Tier Dropdown */
 nav ul ul li {
-	
+
 	float:none;
 	position: relative;
 	border-bottom:none;
@@ -131,11 +131,12 @@ nav ul ul li {
 /* Second, Third and more Tiers	*/
 nav ul ul ul li {
 	position: absolute relative;
-	top:-58px; 
+	top:-58px;
 	left:170px;
 }
 
+table {
 
-
-
-
+	border-collapse:separate;
+border-spacing:1em;
+}
