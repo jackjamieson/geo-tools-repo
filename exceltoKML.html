@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="css/style.css">
 
 
-
 	</head>
 	<title>Geologic Web Utilites - Excel to GE</title>
 	<body>
@@ -19,10 +18,29 @@
 
 			<div class="content">
 <h2>Excel to KML Converter</h2>
-				Excel geologic symbols and circles to KML.  Copy and paste directly from the spreadsheet.
-				<p></p><b>KML Name: </b><input type='text' id='name' size="10" placeholder="fractures">
+				Excel geologic symbols and circles to KML.&nbsp;&nbsp; <br><br>
+				<p>Cut &amp; Paste from a MS Excel Worksheet using the variables
+				listed below</p><b>KML Name: </b><input type='text' id='name' size="10" placeholder="fractures">
 				<br><b>Anno Spacing:</b><br> Bed and layer dip line (~1.5 m): <input type='text' id='td1' size="5" placeholder="3">
-				<br>Joint, arrow, slip-line (~ 8.0 m) or 5-m 3D circle: <input type='text' id='td2' size="5" placeholder="9"><p></p>
+				<br>Joint, arrow, slip-line (~ 8.0 m) or 5-m 3D circle: <input type='text' id='td2' size="5" placeholder="9"><p>
+
+				<table style="font-weight:bold; font-size:10pt; width:750px">
+					<tr>
+						<td>Station</td>
+						<td>Longitude</td>
+						<td>Latitude</td>
+						<td>Altitude</td>
+						<td>Azimuth</td>
+						<td>Dip/Plunge</td>
+						<td>Xscale</td>
+						<td>Yscale</td>
+						<td>Zscale</td>
+						<td>Symbol</td>
+						<td>Note</td>
+					</tr>
+				</table>
+
+
 				<textarea name="textarea" id="excel" rows="20" cols="100"></textarea>
 				<p></p><a href="#" download="output.kml" class="pure-button pure-button-primary" id="generate" >Generate KML</a>
 
@@ -40,4 +58,3 @@
 	<script src='js/etg.js'></script>
 
 </html>
-

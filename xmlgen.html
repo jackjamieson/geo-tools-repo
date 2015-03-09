@@ -13,7 +13,7 @@
 
 
 </head>
-<title>Geologic Web Utilites - Excel to GE</title>
+<title>Geologic Web Utilites - XML Metadata Generator</title>
 <body>
 	<div class="page">
 		<div id="topNav"></div>
@@ -26,7 +26,7 @@
 				<tr>
 					<td><b>CollectionID: </b><a href="javascript:;">?<span class="tooltip">A unique collection ID assigned by the National Digital Catalog to identify distinct collections. This field is
 						required but may be left blank and assigned during the file loading process within the National Digital Catalog.</span></a></td>
-						<td><input type='text' id='collectionid' size="20" placeholder="Can be blank"></td>
+						<td><input type='text' id='collectionid' size="20" value="P1300"></td>
 					</tr>
 					<tr>
 						<td><b>Title: </b><a href="javascript:;">?<span class="tooltip">The human-readable title for the individual record that will be used in any listing or search result. Title should be
@@ -52,7 +52,7 @@
 									formation_name: Unknown formation_age_name: Unknown facility_name: Houston reservoir_name:
 									BILOXI CREEK WILCOX operator_name: APACHE CORPORATION state_name: Texas county_name:
 									Burleson</span></a></td>
-									<td><textarea name="abstract" id="abstract" rows="5" cols="40"></textarea></td>
+									<td><textarea name="abstract" id="abstract" rows="5" cols="40"></textarea><br><font size="2">Please include Township/County information.</font></td>
 								</tr>
 								<tr>
 									<td><b>Data Type: </b><a href="javascript:;">?<span class="tooltip">A controlled vocabulary of data types. An item may include multiple dataTypes, including: 1) Auger Samples, 2)
@@ -72,7 +72,14 @@
 												<input type="checkbox" name="chk" value="Sediment Core"> Sediment Core</option><br>
 												<input type="checkbox" name="chk" value="Sidewall Core"> Sidewall Core</option><br>
 												<input type="checkbox" name="chk" value="Thin Section"> Thin Section</option><br>
-												<input type="checkbox" name="chk" value="Type Stratigraphic Section"> Type Stratigraphic Section</option><br>
+												<input type="checkbox" name="chk" value="Type Stratigraphic Section"> Type Stratigraphic Section</option><br><br>
+												<input type="checkbox" name="chk" value="Photograph"> Photograph</option><br>
+												<input type="checkbox" name="chk" value="35mm Slide"> 35mm Slide</option><br>
+												<input type="checkbox" name="chk" value="Video"> Video</option><br>
+												<input type="checkbox" name="chk" value="Other"> Other</option> <input type='text' id='otherBox' size="20" placeholder="Other data type"><br>
+
+
+
 											</fieldset>
 
 
@@ -86,7 +93,7 @@
 											http://geology.cr.usgs.gov/crc; Sample: Web (this sample):
 											http://inet1.beg.utexas.edu/crc2/geosample.aspx?ID=160580 Phone: 512-471-0402 (Austin CRC) Phone:
 											713-466-8346 (Houston CRC</span></a></td>
-											<td><textarea name="supp" id='supplementalInformation' rows="3" cols="40"></textarea></td>
+											<td><textarea name="supp" id='supplementalInformation' rows="3" cols="40">This data is available upon request by contacting NJGWS at www.state.nj.us/dep/njgs/comments.html</textarea></td>
 										</tr>
 										<tr>
 											<td><b>Coordinates: </b><a href="javascript:;">?<span class="tooltip">Geographic longitude and latitude. Both values shall be contained in the same element and be listed in the
@@ -122,7 +129,7 @@ Examples are 2001, 2001-03, 1939-1945, 20030331, 2000-03-31.</span></a></td>
 													<td><input type='text' id='altdate' size="20"></td>
 												</tr>
 												<tr>
-													<td><b>Dataset Reference Date: </b><a href="javascript:;">?<span class="tooltip">A reference date indicating currency of the underlying data record, which may be the date the metadata record
+													<td><b>Dataset Reference Date:<br>(Date of Upload) </b><a href="javascript:;">?<span class="tooltip">A reference date indicating currency of the underlying data record, which may be the date the metadata record
 														was assembled for the National Digital Catalog. Proper date formats are defined in ISO 8601, which include:
 														1)yyyy, 2) yyyy-mm, 3) yyyymmdd, 4) yyyy-mm-dd2</span></a></td>
 														<td><input type='text' id='date' size="20"></td>

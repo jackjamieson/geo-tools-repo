@@ -23,6 +23,8 @@ function element(name, content, inner){
 
 $('#xml').click(function() {
 
+    //reset the link so it doesn't bypass the required check
+    this.href = "#";
 
     // check for the required fields
     var title = $('#title').val();
@@ -58,7 +60,12 @@ $('#xml').click(function() {
         // loop through the checked boxes and add them to xml
         $(boxes).each(function ()
         {
-            header += element("dataType", $(this).val());
+            if($(this).val() == "Other")
+            {
+                header += element("dataType", $('#otherBox').val());
+            }
+            else header += element("dataType", $(this).val());
+
         });
 
         //header += element("dataType", $( "#sel option:selected" ).text());
@@ -121,27 +128,3 @@ $('#xml').click(function() {
 
 
 });
-
-// generate the file
-function generate(content) {
-
-
-    var textFile = null,
-        makeTextFile = function (text) {
-            var data = new Blob([text], {type: 'text/xml'});
-
-            // If we are replacing a previously generated file we need to
-            // manually revoke the object URL to avoid memory leaks.
-            if (textFile !== null) {
-                window.URL.revokeObjectURL(textFile);
-            }
-
-            textFile = window.URL.createObjectURL(data);
-
-            return textFile;
-        };
-
-
-    this.href = makeTextFile(content);
-    //return false;
-}

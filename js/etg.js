@@ -83,6 +83,8 @@ function findColor(colorNum)
 //calculate the dae file to use
 function findSymbol(symbolNum)
 {
+    //This was for the previous version, keeping it just in case.
+    /*
     switch(symbolNum)
     {
         case 0:
@@ -115,6 +117,9 @@ function findSymbol(symbolNum)
             return "";
 
     }
+    */
+
+
 
 }
 
@@ -252,11 +257,11 @@ function readInput()
 function calcInput(lineArray)
 {
 
-    var file;
-    var symbol = findSymbol(Number(lineArray[9]));
+    var file = lineArray[9];
+    //var symbol = findSymbol((lineArray[9]));
 
     //if the symbol is not a circle check to see which 2d symbol it should be
-    if(symbol != "circle")
+    /*if(symbol != "circle")
     {
         file = findNotCircleSymbol(Number(lineArray[9]));
     }
@@ -264,7 +269,8 @@ function calcInput(lineArray)
 
         file = findColor(Number(lineArray[11]));
 
-    }
+    }*/
+
     var del_x = findDelX(lineArray);
     var del_y = findDelY(lineArray);
     var del_lon = findDelLong(del_x);
@@ -297,15 +303,15 @@ function generateKMLModel(lineArray, calculated)
     var dipAzF = Math.floor(lineArray[4]);
     if(dipF.length == 1)
     {
-        dipF = "0" + dipF.toString();	
+        dipF = "0" + dipF.toString();
     }
     if(dipAzF.length == 2)
     {
-        dipF = "0" + dipF.toString();	
+        dipF = "0" + dipF.toString();
     }
     if(dipAzF.length == 1)
     {
-        dipF = "00" + dipF.toString();	
+        dipF = "00" + dipF.toString();
     }
 
     var orient;
@@ -316,29 +322,29 @@ function generateKMLModel(lineArray, calculated)
     kmlModel += ''
     + '\n<Placemark>'
     + '\n<name>' +	lineArray[10] + " " + dipF + "/" + dipAzF +	'</name>'
-    + '\n<LookAt>'			
-    + '\n<longitude>'	+ lineArray[1] + '</longitude>'	
+    + '\n<LookAt>'
+    + '\n<longitude>'	+ lineArray[1] + '</longitude>'
     + '\n<latitude>'	+ lineArray[2] + '</latitude>'
-    + '\n<altitude>0</altitude>'	
-    + '\n<heading>0</heading>'	
-    + '\n<tilt>0</tilt>'	
-    + '\n<range>7</range></LookAt>'	
-    + '\n<Model id="	model_1	">'	
-    + '\n<altitudeMode>relativeToGround</altitudeMode>'			
-    + '\n<Location>'			
+    + '\n<altitude>0</altitude>'
+    + '\n<heading>0</heading>'
+    + '\n<tilt>0</tilt>'
+    + '\n<range>7</range></LookAt>'
+    + '\n<Model id="	model_1	">'
+    + '\n<altitudeMode>relativeToGround</altitudeMode>'
+    + '\n<Location>'
     + '\n<longitude>' + lineArray[1] + '</longitude>'
     + '\n<latitude>'	+ lineArray[2]+	'</latitude>'
-    + '\n<altitude>' + lineArray[3]+	'</altitude></Location>'	
-    + '\n<Orientation>'		
+    + '\n<altitude>' + lineArray[3]+	'</altitude></Location>'
+    + '\n<Orientation>'
     + '\n<heading>' +	dipAzF	+'</heading>'
     + '\n<tilt>' +	orient	+'</tilt>'
-    + '\n<roll>0</roll></Orientation>'	
-    + '\n<Scale>'			
+    + '\n<roll>0</roll></Orientation>'
+    + '\n<Scale>'
     + '\n<x>' +lineArray[6] + '</x>'
-    + '\n<y>'	+ lineArray[7] +	'</y>'	
-    + '\n<z>'	+ lineArray[8] +	'</z></Scale>'	
-    + '\n<Link>'			
-    + '\n<href>' + calculated.file + '</href>'	
+    + '\n<y>'	+ lineArray[7] +	'</y>'
+    + '\n<z>'	+ lineArray[8] +	'</z></Scale>'
+    + '\n<Link>'
+    + '\n<href>' + calculated.file + '</href>'
     + '\n</Link>'
     + '</Model></Placemark>';
 
@@ -352,15 +358,15 @@ function generateKMLPlacemarks(lineArray, calculated)
     var dipAzF = Math.floor(lineArray[4]);
     if(dipF.length == 1)
     {
-        dipF = "0" + dipF.toString();	
+        dipF = "0" + dipF.toString();
     }
     if(dipAzF.length == 2)
     {
-        dipF = "0" + dipF.toString();	
+        dipF = "0" + dipF.toString();
     }
     if(dipAzF.length == 1)
     {
-        dipF = "00" + dipF.toString();	
+        dipF = "00" + dipF.toString();
     }
 
     kmlPlacemark += ''
@@ -377,6 +383,7 @@ function generateKMLPlacemarks(lineArray, calculated)
 
 //click the generate button
 $('#generate').click(function() {
+
 
     if($('#td1').val().length >= 1)
     {
@@ -423,7 +430,11 @@ $('#generate').click(function() {
 
 
     this.href = makeTextFile(kmlString);
-    //return false;
+
+    //rese the placemark and model so we don't duplicate on extra runs
+    kmlPlacemark = '';
+    kmlModel = '';
+
 });
 
 //on enter, click the generate button
@@ -432,4 +443,3 @@ $('#excel').keypress(function (e) {
         $( "#generate" ).trigger( "click" );
     }
 });
-
