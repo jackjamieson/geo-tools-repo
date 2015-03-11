@@ -53,6 +53,7 @@ if (typeof Number.prototype.toDegrees == 'undefined') {
 }
 
 //calculate the dae file to use
+/*
 function findColor(colorNum)
 {
 
@@ -79,6 +80,7 @@ function findColor(colorNum)
     }
 
 }
+*/
 
 //calculate the dae file to use
 function findSymbol(symbolNum)
@@ -123,6 +125,7 @@ function findSymbol(symbolNum)
 
 }
 
+/*
 function findNotCircleSymbol(symbolNum)
 {
 
@@ -156,6 +159,41 @@ function findNotCircleSymbol(symbolNum)
             return "";
 
     }
+
+}
+*/
+
+//The new file finding function, previous three were for a different version
+function findPremadeSymbol(name) {
+
+    if(name === 'bed.dae' || name === 'bed-white.dae')
+        return true;
+    if(name === 'layer.dae' || name === 'layer-white.dae')
+        return true;
+    if(name === 'cleavage.dae' || name === 'cleavage-white.dae')
+        return true;
+    if(name === 'cleavage2.dae' || name === 'cleavage2-white.dae')
+        return true;
+    if(name === 'joint.dae' || name === 'joint-white.dae')
+        return true;
+    if(name === 'fault.dae' || name === 'fault-white.dae')
+        return true;
+    if(name === 'arrow.dae' || name === 'arrow-white.dae')
+        return true;
+    if(name === 'slip.dae' || name === 'slip-white.dae')
+        return true;
+    if(name === '30m-rocket.dae' || name === '60m-P-axis.dae')
+        return true;
+    if(name === '5-m-Wcircle.dae' || name === '5-m-Ocircle.dae')
+        return true;
+    if(name === '5-m-Bcircle.dae' || name === '5-m-Pcircle.dae')
+        return true;
+    if(name === '5-m-LBcircle.dae' || name === '5-m-Rcircle.dae')
+        return true;
+    if(name === '5-m-Gcircle.dae' || name === '5-m-BLcircle.dae')
+        return true;
+
+    return false;
 
 }
 
@@ -256,8 +294,12 @@ function readInput()
 //put the calculations together
 function calcInput(lineArray)
 {
+    var file;
+    
+    if(findPremadeSymbol(lineArray[9]))
+        file = "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/" + lineArray[9];
+    else file = lineArray[9];
 
-    var file = lineArray[9];
     //var symbol = findSymbol((lineArray[9]));
 
     //if the symbol is not a circle check to see which 2d symbol it should be
@@ -278,7 +320,6 @@ function calcInput(lineArray)
     var label_lat = findLabelLat(del_lat, lineArray);
     var label_lon = findLabelLong(del_lon, lineArray);
 
-    //console.log(file + " " + del_x);
     //return object containing calculations
     var calculated = {
         file:  file,
@@ -291,7 +332,6 @@ function calcInput(lineArray)
         symbol: symbol
     };
 
-    //console.log(calculated.symbol);
 
     return calculated;
 }
@@ -314,8 +354,11 @@ function generateKMLModel(lineArray, calculated)
         dipF = "00" + dipF.toString();
     }
 
+    // if the symbol is 2d make the tilt 0
     var orient;
-    if(Number(lineArray[9] < 6))
+    var text = lineArray[11].toUpperCase();
+
+    if(text === "2D")
         orient = 0;
     else orient = dipF;
 
