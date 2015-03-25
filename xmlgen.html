@@ -22,7 +22,18 @@
 		<div class="content">
 			<h2>XML Metadata Generator for the National Digital Catalog</h2>
 			These are the required fields for XML Metadata.  Please fill in all <b>bold</b> fields and be sure to check the output for any errors.
+			<br><b>If you select a .zip file</b>, all items within the zip will have an XML file created for them, and returned to you in a zip.
+			<br><b>If you do not select a .zip file</b>, a single XML file will be generated for you.
+
 			<table >
+				<tr>
+					<td><i>Zip File of Media:</i></td><td><input id="file" name="file" type="file"></td>
+
+					<div id="result_block">
+
+					  <div id="result"></div>
+					</div>
+				</tr>
 				<tr>
 					<td><b>CollectionID: </b><a href="javascript:;">?<span class="tooltip">A unique collection ID assigned by the National Digital Catalog to identify distinct collections. This field is
 						required but may be left blank and assigned during the file loading process within the National Digital Catalog.</span></a></td>
@@ -124,41 +135,44 @@
 												</tr>
 												<tr>
 													<td><i>Collection Date (Optional): </i><a href="javascript:;">?<span class="tooltip">If a meaningful date within the geosciences domain can be attached to the record (e.g., a collection date), it can
-be supplied here. Either date may be to any degree of precision, or may be left blank to indicate uncertainty.
-Examples are 2001, 2001-03, 1939-1945, 20030331, 2000-03-31.</span></a></td>
-													<td><input type='text' id='altdate' size="20"></td>
-												</tr>
-												<tr>
-													<td><b>Dataset Reference Date:<br>(Date of Upload) </b><a href="javascript:;">?<span class="tooltip">A reference date indicating currency of the underlying data record, which may be the date the metadata record
-														was assembled for the National Digital Catalog. Proper date formats are defined in ISO 8601, which include:
-														1)yyyy, 2) yyyy-mm, 3) yyyymmdd, 4) yyyy-mm-dd2</span></a></td>
-														<td><input type='text' id='date' size="20"></td>
+														be supplied here. Either date may be to any degree of precision, or may be left blank to indicate uncertainty.
+														Examples are 2001, 2001-03, 1939-1945, 20030331, 2000-03-31.</span></a></td>
+														<td><input type='text' id='altdate' size="20"></td>
 													</tr>
-
 													<tr>
-														<td><i>Vertical Extent (Optional): </i><a href="javascript:;">?<span class="tooltip">Vertical extent information can be provided and is especially useful for rock core samples. Specification of extent
-can contain three elements: minimum value, maximum value, and unit of measure. These elements will be
-collected as 2 or 3 values representing the UnitOfMeasure and MaximumValue with the possible addition of
-MinimumValue (e.g., m,35.4,0 for a rock core measured at 35.4 meters).</span></a></td>
-														<td><input type='text' id='vertical' size="20"></td>
-													</tr>
-												</table>
+														<td><b>Dataset Reference Date:<br>(Date of Upload) </b><a href="javascript:;">?<span class="tooltip">A reference date indicating currency of the underlying data record, which may be the date the metadata record
+															was assembled for the National Digital Catalog. Proper date formats are defined in ISO 8601, which include:
+															1)yyyy, 2) yyyy-mm, 3) yyyymmdd, 4) yyyy-mm-dd2</span></a></td>
+															<td><input type='text' id='date' size="20"></td>
+														</tr>
+
+														<tr>
+															<td><i>Vertical Extent (Optional): </i><a href="javascript:;">?<span class="tooltip">Vertical extent information can be provided and is especially useful for rock core samples. Specification of extent
+																can contain three elements: minimum value, maximum value, and unit of measure. These elements will be
+																collected as 2 or 3 values representing the UnitOfMeasure and MaximumValue with the possible addition of
+																MinimumValue (e.g., m,35.4,0 for a rock core measured at 35.4 meters).</span></a></td>
+																<td><input type='text' id='vertical' size="20"></td>
+															</tr>
+														</table>
 
 
 
-												<p></p><a href="#" download="output.xml" class="pure-button pure-button-primary" id="xml" >Generate XML</a>
+														<p></p><a href="#" download="output.xml" class="pure-button pure-button-primary" id="xml" >Generate XML / Zip</a>
 
-											</div>
+													</div>
 
-											<div id="foot" class="foot"></div>
-										</div>
+													<div id="foot" class="foot"></div>
+												</div>
 
-									</body>
+											</body>
 
-									<script src='js/nav.js'></script>
-									<script src='js/yui-min.js'></script>
+											<script src='js/nav.js'></script>
+											<script src='js/yui-min.js'></script>
 
-									<script src='js/jquery-1.11.1.min.js'></script>
-									<script src='js/xml.js'></script>
+											<script src='js/jquery-1.11.1.min.js'></script>
+											<script src='js/jszip.min.js'></script>
+											<script src='js/filesaver.min.js'></script>
 
-									</html>
+											<script src='js/xml.js'></script>
+
+											</html>
