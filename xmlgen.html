@@ -25,14 +25,18 @@
 			<br><b>If you select a .zip file</b>, all items within the zip will have an XML file created for them, and returned to you in a zip.
 			<br><b>If you do not select a .zip file</b>, a single XML file will be generated for you.
 
+
+			<div id="result_block">
+
+			<div id="result"></div>
+			</div>
+
+			<div id="new_titles"></div>
 			<table >
 				<tr>
 					<td><i>Zip File of Media:</i></td><td><input id="file" name="file" type="file"></td>
 
-					<div id="result_block">
 
-					  <div id="result"></div>
-					</div>
 				</tr>
 				<tr>
 					<td><b>CollectionID: </b><a href="javascript:;">?<span class="tooltip">A unique collection ID assigned by the National Digital Catalog to identify distinct collections. This field is
@@ -40,11 +44,11 @@
 						<td><input type='text' id='collectionid' size="20" value="P1300"></td>
 					</tr>
 					<tr>
-						<td><b>Title: </b><a href="javascript:;">?<span class="tooltip">The human-readable title for the individual record that will be used in any listing or search result. Title should be
+						<td><div id="titles"><b>Title: </b><a href="javascript:;">?<span class="tooltip">The human-readable title for the individual record that will be used in any listing or search result. Title should be
 							short for display purposes but contain enough information to distinguish from other records. Examples: Sample:
 							Geologic Sample 160580 Sample: ID: NMDF52900064 TITLE: ISAACS BROS. LEAD-SILVER MINE; Sample:
-							Core Research Center, Cutting DD18216; Sample: Core sample from well: KNIK ARM ST 1</span></a></td>
-							<td><input type='text' id='title' size="20"></td>
+							Core Research Center, Cutting DD18216; Sample: Core sample from well: KNIK ARM ST 1</span></a></div></td>
+							<td><div id="titleBox"><input type='text' id='title' size="20"></div></td>
 						</tr>
 						<tr>
 							<td><i>Alternate Title (Optional): </i><a href="javascript:;">?<span class="tooltip">Collection owners may elect to provide additional title identifiers for individual records for further identification or

@@ -48,7 +48,7 @@ var isUsingZip = false;
                         var dateAfter = new Date();
 
                         $title.append($("<span>", {
-                            text:" (parsed in " + (dateAfter - dateBefore) + "ms)"
+                            text:" Contents: "
                         }));
 
                         // that, or a good ol' for(var entryName in zip.files)
@@ -63,6 +63,8 @@ var isUsingZip = false;
                             }
                             // the content is here : zipEntry.asText()
                         });
+
+                        addTitleFields(fileList.length, fileList);
                         // end of the magic !
 
                     } catch(e) {
@@ -82,6 +84,27 @@ var isUsingZip = false;
         }
     });
 })();
+
+function addTitleFields(count, fileList){
+
+    var titles = document.getElementById("titles");
+    var titleBlock = document.getElementById("titleBox");
+    var newTitles = document.getElementById("new_titles");
+
+    titleBlock.innerHTML = "";
+
+    titles.innerHTML = "";
+
+
+    for(var i = 0; i < count; i++){
+
+        newTitles.innerHTML += "<div style='margin-left:15px'><p><tr><td><b>Title (" + fileList[i] + "): </b></td><td><input type='text' id=" + "\"" + fileList[i] + "\"" + "size='20'></td></tr></p></div>";
+
+    }
+
+
+
+}
 
 
 function element(name, content, inner){
@@ -104,7 +127,7 @@ function element(name, content, inner){
 
 $('#xml').click(function() {
 
-    var zip = new JSZip();
+    //var zip = new JSZip();
     //reset the link so it doesn't bypass the required check
     this.href = "#";
 
@@ -117,102 +140,205 @@ $('#xml').click(function() {
     var lat = $('#latitude').val();
     var date = $('#date').val();
 
-    if(title.length == 0 || abstract.length == 0 || boxes.length == 0 || supp.length == 0 || long.length == 0 || lat.length == 0 || date.length == 0)
+    //when we are not using a zip file
+    if(!isUsingZip)
     {
-        alert("All required fields must be filled in.  Bolded items are required.");
-
-
-    }
-    else {
-        // collect the information from the form inputs
-        var header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-        header += "\n<sample>\n";
-        header += element("collectionID", $('#collectionid').val());
-        header += element("title", $('#title').val());
-
-        // alternate title
-        if($('#alttitle').val().length != 0){
-            header += element("alternateTitle", $('#alttitle').val(), "title");
-        }
-
-
-
-        header += element("abstract",  $('#abstract').val());
-
-        // loop through the checked boxes and add them to xml
-        $(boxes).each(function ()
+        if(title.length == 0 || abstract.length == 0 || boxes.length == 0 || supp.length == 0 || long.length == 0 || lat.length == 0 || date.length == 0)
         {
-            if($(this).val() == "Other")
-            {
-                header += element("dataType", $('#otherBox').val());
+            alert("All required fields must be filled in.  Bolded items are required.");
+
+
+        }
+        else {
+            // collect the information from the form inputs
+            var header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+            header += "\n<sample>\n";
+            header += element("collectionID", $('#collectionid').val());
+            header += element("title", $('#title').val());
+
+            // alternate title
+            if($('#alttitle').val().length != 0){
+                header += element("alternateTitle", $('#alttitle').val(), "title");
             }
-            else header += element("dataType", $(this).val());
 
-        });
 
-        //header += element("dataType", $( "#sel option:selected" ).text());
-        header += element("supplementalInformation", $('#supplementalInformation').val() , "info");
-        header += element("coordinates", $('#longitude').val() + ", " + $('#latitude').val());
 
-        // alternate geometry
-        if($('#altgeometry').val().length != 0){
-            header += element("alternateGeometry", $('#altgeometry').val());
-        }
+            header += element("abstract",  $('#abstract').val());
 
-        // online resource
-        if($('#onlineresource').val().length != 0){
-            header += element("onlineResource", $('#onlineresource').val(), "resourceURL");
-        }
+            // loop through the checked boxes and add them to xml
+            $(boxes).each(function ()
+            {
+                if($(this).val() == "Other")
+                {
+                    header += element("dataType", $('#otherBox').val());
+                }
+                else header += element("dataType", $(this).val());
 
-        // browse graphic
-        if($('#browsegraphic').val().length != 0){
-            header += element("browseGraphic", $('#browsegraphic').val(), "resourceURL");
-        }
+            });
 
-        // collection date
-        if($('#altdate').val().length != 0){
-            header += element("dates", $('#altdate').val(), "date");
-        }
+            //header += element("dataType", $( "#sel option:selected" ).text());
+            header += element("supplementalInformation", $('#supplementalInformation').val() , "info");
+            header += element("coordinates", $('#longitude').val() + ", " + $('#latitude').val());
 
-        // vertical extent
-        if($('#vertical').val().length != 0){
-            header += element("verticalExtent", $('#vertical').val());
-        }
+            // alternate geometry
+            if($('#altgeometry').val().length != 0){
+                header += element("alternateGeometry", $('#altgeometry').val());
+            }
 
-        header += element("datasetReferenceDate", $('#date').val());
-        header += "</sample>";
+            // online resource
+            if($('#onlineresource').val().length != 0){
+                header += element("onlineResource", $('#onlineresource').val(), "resourceURL");
+            }
 
-        if(!isUsingZip){
+            // browse graphic
+            if($('#browsegraphic').val().length != 0){
+                header += element("browseGraphic", $('#browsegraphic').val(), "resourceURL");
+            }
+
+            // collection date
+            if($('#altdate').val().length != 0){
+                header += element("dates", $('#altdate').val(), "date");
+            }
+
+            // vertical extent
+            if($('#vertical').val().length != 0){
+                header += element("verticalExtent", $('#vertical').val());
+            }
+            
+            header += element("datasetReferenceDate", $('#date').val());
+            header += "</sample>";
+
+
             //needed to generate a single file.  may still be necesary
             var textFile = null,
-                makeTextFile = function (text) {
-                    var data = new Blob([text], {type: 'text/xml'});
+            makeTextFile = function (text) {
+                var data = new Blob([text], {type: 'text/xml'});
 
-                    // If we are replacing a previously generated file we need to
-                    // manually revoke the object URL to avoid memory leaks.
-                    if (textFile !== null) {
-                        window.URL.revokeObjectURL(textFile);
-                    }
+                // If we are replacing a previously generated file we need to
+                // manually revoke the object URL to avoid memory leaks.
+                if (textFile !== null) {
+                    window.URL.revokeObjectURL(textFile);
+                }
 
-                    textFile = window.URL.createObjectURL(data);
+                textFile = window.URL.createObjectURL(data);
 
-                    return textFile;
-                };
+                return textFile;
+            };
             this.href = makeTextFile(header);
+
+
         }
-        else{
-            //var xmlFile = makeTextFile(header);
-            for(var i = 0; i < fileList.length; i++)
+    }
+    else{
+        //when we are using a zip file
+        var zip = new JSZip();
+        //reset the link so it doesn't bypass the required check
+        this.href = "#";
+
+        // check for the required fields
+        var abstract = $('#abstract').val();
+        var boxes = $('input[name=chk]:checked');
+        var supp = $('#supplementalInformation').val();
+        var long = $('#longitude').val();
+        var lat = $('#latitude').val();
+        var date = $('#date').val();
+
+
+        // loop through and check the titles of the zip files
+        var isEmpty = true;
+        for(var z = 0; z < fileList.length; z++)
+        {
+            if(document.getElementById(fileList[z]).value.length == 0)
             {
-                zip.file(fileList[i].substring(0, fileList[i].indexOf('.')) + "-xml.xml", header);
+                isEmpty = true;
+                z = fileList.length;
+            }
+            else isEmpty = false;// The titles have all been filled out
+
+        }
+
+
+        if(isEmpty == true || abstract.length == 0 || boxes.length == 0 || supp.length == 0 || long.length == 0 || lat.length == 0 || date.length == 0)
+        {
+            alert("All required fields must be filled in.  Bolded items are required.");
+
+
+        }
+        else {
+            // collect the information from the form inputs
+            for(var f = 0; f < fileList.length; f++){
+                var header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+                header += "\n<sample>\n";
+                header += element("collectionID", $('#collectionid').val());
+                header += element("title", document.getElementById(fileList[f]).value);
+
+                // alternate title
+                if($('#alttitle').val().length != 0){
+                    header += element("alternateTitle", $('#alttitle').val(), "title");
+                }
+
+
+
+                header += element("abstract",  $('#abstract').val());
+
+                // loop through the checked boxes and add them to xml
+                $(boxes).each(function ()
+                {
+                    if($(this).val() == "Other")
+                    {
+                        header += element("dataType", $('#otherBox').val());
+                    }
+                    else header += element("dataType", $(this).val());
+
+                });
+
+                //header += element("dataType", $( "#sel option:selected" ).text());
+                header += element("supplementalInformation", $('#supplementalInformation').val() , "info");
+                header += element("coordinates", $('#longitude').val() + ", " + $('#latitude').val());
+
+                // alternate geometry
+                if($('#altgeometry').val().length != 0){
+                    header += element("alternateGeometry", $('#altgeometry').val());
+                }
+
+                // online resource
+                if($('#onlineresource').val().length != 0){
+                    header += element("onlineResource", $('#onlineresource').val(), "resourceURL");
+                }
+
+                // browse graphic
+                if($('#browsegraphic').val().length != 0){
+                    header += element("browseGraphic", $('#browsegraphic').val(), "resourceURL");
+                }
+
+                // collection date
+                if($('#altdate').val().length != 0){
+                    header += element("dates", $('#altdate').val(), "date");
+                }
+
+                // vertical extent
+                if($('#vertical').val().length != 0){
+                    header += element("verticalExtent", $('#vertical').val());
+                }
+
+                header += element("datasetReferenceDate", $('#date').val());
+                header += "</sample>";
+
+                zip.file(fileList[f].substring(0, fileList[f].indexOf('.')) + "-xml.xml", header);//add the file to the zip in-memory
 
             }
+
+            //generate the zip file
             var content = zip.generate({type:"blob"});
             saveAs(content, zipFile + "-xml.zip");
+
+
+
+
         }
 
-
     }
+
 
 
 
