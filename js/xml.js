@@ -2,8 +2,8 @@
 var opencdata = "<![CDATA[ ";
 var closecdata = " ]]>";
 
-var fileList = [];
-var zipFile;
+var fileList = []; // maintain a list of the zip files because we need them to make the xml files
+var zipFile; // the generated zip
 
 var isUsingZip = false;
 
@@ -17,6 +17,7 @@ var isUsingZip = false;
 
     var $result = $("#result");
     $("#file").on("change", function(evt) {
+        var showLoading = document.getElementById('loading');
         isUsingZip = true;
         fileList.length = 0;
         // remove content
@@ -33,6 +34,9 @@ var isUsingZip = false;
 
             // Closure to capture the file information.
             reader.onload = (function(theFile) {
+
+                showLoading.style.display = "block"; // show the loading div
+
                 return function(e) {
                     var $title = $("<h4>", {
                         text : theFile.name
@@ -56,10 +60,11 @@ var isUsingZip = false;
 
                             var fileName = zipEntry.name.substring(zipEntry.name.indexOf('/')+1, zipEntry.name.length);
                             if(fileName != 'Thumbs.db'){
-                                $fileContent.append($("<li>", {
-                                    text : zipEntry.name
-                                }));
-                                fileList.push(fileName); // add the filename to the array so we can count them later and use name
+                                // hide this because we are showing it another way
+                                // $fileContent.append($("<li>", {
+                                //     text : zipEntry.name
+                                // }));
+                                fileList.push(zipEntry.name); // add the filename to the array so we can count them later and use name
                             }
                             // the content is here : zipEntry.asText()
                         });
@@ -74,12 +79,15 @@ var isUsingZip = false;
                         });
                     }
                     $result.append($fileContent);
+                    showLoading.style.display = 'none';
+
                 }
             })(f);
 
             // read the file !
             // readAsArrayBuffer and readAsBinaryString both produce valid content for JSZip.
             reader.readAsArrayBuffer(f);
+
             // reader.readAsBinaryString(f);
         }
     });
@@ -95,10 +103,14 @@ function addTitleFields(count, fileList){
 
     titles.innerHTML = "";
 
+    newTitles.innerHTML = "";
+
 
     for(var i = 0; i < count; i++){
 
-        newTitles.innerHTML += "<div style='margin-left:15px'><p><tr><td><b>Title (" + fileList[i] + "): </b></td><td><input type='text' id=" + "\"" + fileList[i] + "\"" + "size='20'></td></tr></p></div>";
+        var tempFileName = fileList[i].substring(0, fileList[i].lastIndexOf("."));
+
+        newTitles.innerHTML += "<div style='margin-left:15px'><p><tr><td><b>Title (" + fileList[i] + "): </b></td><td><input type='text' id=" + "\"" + fileList[i] + "\"" + "size='20' value=\"" + tempFileName + "\"></td></tr></p></div>";
 
     }
 
@@ -130,6 +142,7 @@ $('#xml').click(function() {
     //var zip = new JSZip();
     //reset the link so it doesn't bypass the required check
     this.href = "#";
+    var downloadAttr = document.getElementById('xml');
 
     // check for the required fields
     var title = $('#title').val();
@@ -146,10 +159,16 @@ $('#xml').click(function() {
         if(title.length == 0 || abstract.length == 0 || boxes.length == 0 || supp.length == 0 || long.length == 0 || lat.length == 0 || date.length == 0)
         {
             alert("All required fields must be filled in.  Bolded items are required.");
-
+            downloadAttr.removeAttribute('download');
 
         }
         else {
+
+            if(downloadAttr.getAttribute("download") == null)
+            {
+                downloadAttr.setAttribute("download", "output.xml");
+
+            }
             // collect the information from the form inputs
             var header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
             header += "\n<sample>\n";
@@ -204,7 +223,7 @@ $('#xml').click(function() {
             if($('#vertical').val().length != 0){
                 header += element("verticalExtent", $('#vertical').val());
             }
-            
+
             header += element("datasetReferenceDate", $('#date').val());
             header += "</sample>";
 
@@ -230,6 +249,8 @@ $('#xml').click(function() {
         }
     }
     else{
+        downloadAttr.removeAttribute('download');
+
         //when we are using a zip file
         var zip = new JSZip();
         //reset the link so it doesn't bypass the required check
@@ -324,7 +345,7 @@ $('#xml').click(function() {
                 header += element("datasetReferenceDate", $('#date').val());
                 header += "</sample>";
 
-                zip.file(fileList[f].substring(0, fileList[f].indexOf('.')) + "-xml.xml", header);//add the file to the zip in-memory
+                zip.file(fileList[f].substring(0, fileList[f].lastIndexOf('.')) + "-xml.xml", header);//add the file to the zip in-memory
 
             }
 
@@ -332,20 +353,7 @@ $('#xml').click(function() {
             var content = zip.generate({type:"blob"});
             saveAs(content, zipFile + "-xml.zip");
 
-
-
-
         }
-
     }
-
-
-
-
-
-
-
-
-
 
 });

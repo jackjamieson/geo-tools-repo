@@ -25,6 +25,7 @@
 			<br><b>If you select a .zip file</b>, all items within the zip will have an XML file created for them, and returned to you in a zip.
 			<br><b>If you do not select a .zip file</b>, a single XML file will be generated for you.
 
+			<div style="display:none;" id="loading"><center><p><img src="img/loader.gif"/><br><b>Reading ZIP Contents...</b></p></center></div>
 
 			<div id="result_block">
 
@@ -50,12 +51,7 @@
 							Core Research Center, Cutting DD18216; Sample: Core sample from well: KNIK ARM ST 1</span></a></div></td>
 							<td><div id="titleBox"><input type='text' id='title' size="20"></div></td>
 						</tr>
-						<tr>
-							<td><i>Alternate Title (Optional): </i><a href="javascript:;">?<span class="tooltip">Collection owners may elect to provide additional title identifiers for individual records for further identification or
-								use by other Web service interfaces. The AlternateTitle field may include either textual titles or specific sample
-								IDs used by the collection.</span></a></td>
-								<td><input type='text' id='alttitle' size="20"></td>
-							</tr>
+
 							<tr>
 								<td><b>Abstract: </b><a href="javascript:;">?<span class="tooltip">The human-readable description of the individual record used to help determine the nature of the underlying
 									physical data resource. Due to the general nature of the Catalog, a fair amount of information about the data
@@ -121,6 +117,18 @@
 												<td></td><td>Latitude: <input type='text' id='latitude' size="20" placeholder="Decimal degrees"></td>
 											</tr>
 											<tr>
+												<td><b>Dataset Reference Date:<br>(Date of Upload) </b><a href="javascript:;">?<span class="tooltip">A reference date indicating currency of the underlying data record, which may be the date the metadata record
+													was assembled for the National Digital Catalog. Proper date formats are defined in ISO 8601, which include:
+													1)yyyy, 2) yyyy-mm, 3) yyyymmdd, 4) yyyy-mm-dd2</span></a></td>
+													<td><input type='text' id='date' size="20"></td>
+												</tr>
+											<tr>
+												<td><i>Alternate Title (Optional): </i><a href="javascript:;">?<span class="tooltip">Collection owners may elect to provide additional title identifiers for individual records for further identification or
+													use by other Web service interfaces. The AlternateTitle field may include either textual titles or specific sample
+													IDs used by the collection.</span></a></td>
+													<td><input type='text' id='alttitle' size="20"></td>
+												</tr>
+											<tr>
 												<td><i>Alternate Geometry (Optional): </i><a href="javascript:;">?<span class="tooltip">The underlying collection resource may use an alternate method of storing a geospatial footprint. If so, this text
 													field should be used to describe the authoritative source for geographic location and how the simple coordinates
 													were derived.</span></a></td>
@@ -143,12 +151,7 @@
 														Examples are 2001, 2001-03, 1939-1945, 20030331, 2000-03-31.</span></a></td>
 														<td><input type='text' id='altdate' size="20"></td>
 													</tr>
-													<tr>
-														<td><b>Dataset Reference Date:<br>(Date of Upload) </b><a href="javascript:;">?<span class="tooltip">A reference date indicating currency of the underlying data record, which may be the date the metadata record
-															was assembled for the National Digital Catalog. Proper date formats are defined in ISO 8601, which include:
-															1)yyyy, 2) yyyy-mm, 3) yyyymmdd, 4) yyyy-mm-dd2</span></a></td>
-															<td><input type='text' id='date' size="20"></td>
-														</tr>
+
 
 														<tr>
 															<td><i>Vertical Extent (Optional): </i><a href="javascript:;">?<span class="tooltip">Vertical extent information can be provided and is especially useful for rock core samples. Specification of extent
