@@ -22,7 +22,7 @@
 		<div class="content">
 			<h2>XML Metadata Generator for the National Digital Catalog</h2>
 			These are the required fields for XML Metadata.  Please fill in all <b>bold</b> fields and be sure to check the output for any errors.
-			<br><b>If you select a .zip file</b>, all items within the zip will have an XML file created for them, and returned to you in a zip.
+			<br><b>If you select a .zip file</b>, all items within the zip will have an XML file created for them, and returned to you in a zip with the same name.
 			<br><b>If you do not select a .zip file</b>, a single XML file will be generated for you.
 
 			<div style="display:none;" id="loading"><center><p><img src="img/loader.gif"/><br><b>Reading ZIP Contents...</b></p></center></div>
@@ -63,7 +63,7 @@
 									formation_name: Unknown formation_age_name: Unknown facility_name: Houston reservoir_name:
 									BILOXI CREEK WILCOX operator_name: APACHE CORPORATION state_name: Texas county_name:
 									Burleson</span></a></td>
-									<td><textarea name="abstract" id="abstract" rows="5" cols="40"></textarea><br><font size="2">Please include Township/County information.</font></td>
+									<td><textarea name="abstract" id="abstract" rows="5" cols="40"></textarea><br><b>Please include Township/County information.</b></td>
 								</tr>
 								<tr>
 									<td><b>Data Type: </b><a href="javascript:;">?<span class="tooltip">A controlled vocabulary of data types. An item may include multiple dataTypes, including: 1) Auger Samples, 2)
@@ -109,18 +109,25 @@
 										<tr>
 											<td><b>Coordinates: </b><a href="javascript:;">?<span class="tooltip">Geographic longitude and latitude. Both values shall be contained in the same element and be listed in the
 												order: longitude,latitude with values separated by a comma. Example: Sample: -118.023423, 45.02312</span></a></td>
-												<td>Longitude: <input type='text' id='longitude' size="20" placeholder="Decimal degrees">
+												<td>Longitude: <input type='text' id='longitude' size="20">
 
 												</td>
 											</tr>
 											<tr>
-												<td></td><td>Latitude: <input type='text' id='latitude' size="20" placeholder="Decimal degrees"></td>
+												<td></td><td>Latitude: <input type='text' id='latitude' size="20"></td>
+											</tr>
+											<tr>
+												<td></td><td><b>Must be in Decimal Degrees and NAD83.</b></td>
 											</tr>
 											<tr>
 												<td><b>Dataset Reference Date:<br>(Date of Upload) </b><a href="javascript:;">?<span class="tooltip">A reference date indicating currency of the underlying data record, which may be the date the metadata record
 													was assembled for the National Digital Catalog. Proper date formats are defined in ISO 8601, which include:
 													1)yyyy, 2) yyyy-mm, 3) yyyymmdd, 4) yyyy-mm-dd2</span></a></td>
 													<td><input type='text' id='date' size="20"></td>
+
+												</tr>
+												<tr>
+													<td><td><b>Allowed formats:  YYYY, YYYY-MM, YYYYMMdd, or YYYY-MM-dd.</b></td>
 												</tr>
 											<tr>
 												<td><i>Alternate Title (Optional): </i><a href="javascript:;">?<span class="tooltip">Collection owners may elect to provide additional title identifiers for individual records for further identification or
