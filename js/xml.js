@@ -145,7 +145,7 @@ function element(name, content, inner){
     var xml;
 
     if (!content){
-        xml='\t<' + name + '/>\n';
+        xml='\t<' + name + '></' + name + '>\n';
     }
     else if(content && !inner){
         xml='\t<'+ name + '>' + content + '</' + name + '>\n';
@@ -222,30 +222,25 @@ $('#xml').click(function() {
             header += element("coordinates", $('#longitude').val() + ", " + $('#latitude').val());
 
             // alternate geometry
-            if($('#altgeometry').val().length != 0){
-                header += element("alternateGeometry", $('#altgeometry').val());
-            }
+            header += element("alternateGeometry", $('#altgeometry').val());
+
 
             // online resource
-            if($('#onlineresource').val().length != 0){
-                header += element("onlineResource", $('#onlineresource').val(), "resourceURL");
-            }
+            header += element("onlineResource", $('#onlineresource').val(), "resourceURL");
+
 
             // browse graphic
-            if($('#browsegraphic').val().length != 0){
-                header += element("browseGraphic", $('#browsegraphic').val(), "resourceURL");
-            }
+            header += element("browseGraphic", $('#browsegraphic').val(), "resourceURL");
+
 
             // collection date
-            if($('#altdate').val().length != 0){
-                header += element("dates", $('#altdate').val(), "date");
-            }
+            header += element("dates", $('#altdate').val(), "date");
+
 
             // vertical extent
-            if($('#vertical').val().length != 0){
-                header += element("verticalExtent", $('#vertical').val());
-            }
+            header += element("verticalExtent", $('#vertical').val());
 
+            // dataset ref date
             header += element("datasetReferenceDate", $('#date').val());
             header += "</sample>";
 
@@ -340,31 +335,27 @@ $('#xml').click(function() {
                 header += element("coordinates", $('#longitude').val() + ", " + $('#latitude').val());
 
                 // alternate geometry
-                if($('#altgeometry').val().length != 0){
-                    header += element("alternateGeometry", $('#altgeometry').val());
-                }
+                header += element("alternateGeometry", $('#altgeometry').val());
+
 
                 // online resource
-                if($('#onlineresource').val().length != 0){
-                    header += element("onlineResource", $('#onlineresource').val(), "resourceURL");
-                }
+                header += element("onlineResource", $('#onlineresource').val(), "resourceURL");
+
 
                 // browse graphic
-                if($('#browsegraphic').val().length != 0){
-                    header += element("browseGraphic", $('#browsegraphic').val(), "resourceURL");
-                }
+                header += element("browseGraphic", $('#browsegraphic').val(), "resourceURL");
+
 
                 // collection date
-                if($('#altdate').val().length != 0){
-                    header += element("dates", $('#altdate').val(), "date");
-                }
+                header += element("dates", $('#altdate').val(), "date");
+
 
                 // vertical extent
-                if($('#vertical').val().length != 0){
-                    header += element("verticalExtent", $('#vertical').val());
-                }
+                header += element("verticalExtent", $('#vertical').val());
 
+                // dataset ref date
                 header += element("datasetReferenceDate", $('#date').val());
+                
                 header += "</sample>";
 
                 zip.file(fileList[f].substring(0, fileList[f].lastIndexOf('.')) + "-xml.xml", header);//add the file to the zip in-memory
