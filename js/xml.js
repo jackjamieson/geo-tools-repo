@@ -198,11 +198,7 @@ $('#xml').click(function() {
             header += element("title", $('#title').val());
 
             // alternate title
-            if($('#alttitle').val().length != 0){
-                header += element("alternateTitle", $('#alttitle').val(), "title");
-            }
-
-
+            header += element("alternateTitle", $('#alttitle').val(), "title");
 
             header += element("abstract",  $('#abstract').val());
 
@@ -236,12 +232,13 @@ $('#xml').click(function() {
             // collection date
             header += element("dates", $('#altdate').val(), "date");
 
+            // dataset ref date
+            header += element("datasetReferenceDate", $('#date').val());
 
             // vertical extent
             header += element("verticalExtent", $('#vertical').val());
 
-            // dataset ref date
-            header += element("datasetReferenceDate", $('#date').val());
+
             header += "</sample>";
 
 
@@ -355,7 +352,7 @@ $('#xml').click(function() {
 
                 // dataset ref date
                 header += element("datasetReferenceDate", $('#date').val());
-                
+
                 header += "</sample>";
 
                 zip.file(fileList[f].substring(0, fileList[f].lastIndexOf('.')) + "-xml.xml", header);//add the file to the zip in-memory
