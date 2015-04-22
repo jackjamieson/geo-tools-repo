@@ -308,9 +308,8 @@ $('#xml').click(function() {
                 header += element("title", document.getElementById(fileList[f]).value);
 
                 // alternate title
-                if($('#alttitle').val().length != 0){
-                    header += element("alternateTitle", $('#alttitle').val(), "title");
-                }
+                header += element("alternateTitle", $('#alttitle').val(), "title");
+
 
 
 
