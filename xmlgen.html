@@ -43,13 +43,39 @@
 					<td><b>CollectionID: </b><a href="javascript:;">?<span class="tooltip">A unique collection ID assigned by the National Digital Catalog to identify distinct collections. This field is
 						required but may be left blank and assigned during the file loading process within the National Digital Catalog.</span></a></td>
 						<td><input type='text' id='collectionid' size="20" value="P1300"></td>
+						<tr><td></td><td>Predefined IDs:
+							<select id="predefinedCollection">
+							  <option value="P1099">P1099 Paper Maps</option>
+							  <option value="P1292">P1292 Paper Reports</option>
+							  <option value="P1293">P1293 Paper Field Notes</option>
+							  <option value="P1294">P1294 Physical Rock Cores</option>
+								<option value="P1295">P1295 Physical Geochemical Samples</option>
+								<option value="P1296">P1296 Physical Thin Sections</option>
+								<option value="P1297">P1297 Paper Lithology Logs</option>
+								<option value="P1298">P1298 Digital Geophysical</option>
+								<option value="P1299">P1299 Digtal 2D and 3D Seismic Reflection</option>
+								<option value="P1300" selected="selected">P1300 Photographs</option>
+								<option value="P1302">P1302 Digital Seismic Data</option>
+								<option value="P1303">P1303 Digital Maps</option>
+								<option value="P1304">P1304 Digital Reports</option>
+								<option value="P1305">P1305 Digital Field Notes</option>
+								<option value="P1306">P1306 Digital Well Logs</option>
+								<option value="P1307">P1307 Paper Well Logs</option>
+								<option value="P1309">P1309 Digital Geochemical Data</option>
+								<option value="P1364">P1364 Paper 2D and 3D Seismic Reflections</option>
+								<option value="P1649">P1649 Physical Hand Samples</option>
+								<option value="P1650">P1650 Physical Rock Cuttings</option>
+								<option value="P1651">P1651 Physical Sediment Cores</option>
+
+							</select>
+						</td></tr>
 					</tr>
 					<tr>
 						<td><div id="titles"><b>Title: </b><a href="javascript:;">?<span class="tooltip">The human-readable title for the individual record that will be used in any listing or search result. Title should be
 							short for display purposes but contain enough information to distinguish from other records. Examples: Sample:
 							Geologic Sample 160580 Sample: ID: NMDF52900064 TITLE: ISAACS BROS. LEAD-SILVER MINE; Sample:
 							Core Research Center, Cutting DD18216; Sample: Core sample from well: KNIK ARM ST 1</span></a></div></td>
-							<td><div id="titleBox"><input type='text' id='title' size="20"></div></td>
+							<td><div id="titleBox"><input type='text' id='title' size="20" maxlength="253"></div></td>
 						</tr>
 
 							<tr>
@@ -63,7 +89,7 @@
 									formation_name: Unknown formation_age_name: Unknown facility_name: Houston reservoir_name:
 									BILOXI CREEK WILCOX operator_name: APACHE CORPORATION state_name: Texas county_name:
 									Burleson</span></a></td>
-									<td><textarea name="abstract" id="abstract" rows="5" cols="40"></textarea><br><b>Please include Township/County information.</b></td>
+									<td><textarea name="abstract" id="abstract" rows="5" cols="40" maxlength="253"></textarea><br><b>Please include Township/County information.</b></td>
 								</tr>
 								<tr>
 									<td><b>Data Type: </b><a href="javascript:;">?<span class="tooltip">A controlled vocabulary of data types. An item may include multiple dataTypes, including: 1) Auger Samples, 2)
@@ -104,7 +130,7 @@
 											http://geology.cr.usgs.gov/crc; Sample: Web (this sample):
 											http://inet1.beg.utexas.edu/crc2/geosample.aspx?ID=160580 Phone: 512-471-0402 (Austin CRC) Phone:
 											713-466-8346 (Houston CRC</span></a></td>
-											<td><textarea name="supp" id='supplementalInformation' rows="3" cols="40">This data is available upon request by contacting NJGWS at www.state.nj.us/dep/njgs/comments.html</textarea></td>
+											<td><textarea name="supp" id='supplementalInformation' rows="3" cols="40" maxlength="253">This data is available upon request by contacting NJGWS at www.state.nj.us/dep/njgs/comments.html</textarea></td>
 										</tr>
 										<tr>
 											<td><b>Coordinates: </b><a href="javascript:;">?<span class="tooltip">Geographic longitude and latitude. Both values shall be contained in the same element and be listed in the
@@ -133,7 +159,7 @@
 												<td><i>Alternate Title (Optional): </i><a href="javascript:;">?<span class="tooltip">Collection owners may elect to provide additional title identifiers for individual records for further identification or
 													use by other Web service interfaces. The AlternateTitle field may include either textual titles or specific sample
 													IDs used by the collection.</span></a></td>
-													<td><input type='text' id='alttitle' size="20"></td>
+													<td><input type='text' id='alttitle' size="20" maxlength="253"></td>
 												</tr>
 											<tr>
 												<td><i>Alternate Geometry (Optional): </i><a href="javascript:;">?<span class="tooltip">The underlying collection resource may use an alternate method of storing a geospatial footprint. If so, this text

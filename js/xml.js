@@ -366,3 +366,8 @@ $('#xml').click(function() {
     }
 
 });
+
+// when the predfined ids are changed, change the Collection id input
+$( "#predefinedCollection" ).change(function() {
+    $('#collectionid').val($( "#predefinedCollection option:selected" ).val());
+});
