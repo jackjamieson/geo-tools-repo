@@ -3,9 +3,9 @@
 
 //When a user clicks calculate on atlas -> lat
 $('#go').click(function () {
-	
 
-	
+
+
 	var divErr = document.getElementById('error');
 	var divDMS = document.getElementById('outputDMS');
 	var divDeg = document.getElementById('outputDeg');
@@ -21,7 +21,7 @@ $('#go').click(function () {
     var first = $('#firstBlock').val();
 	var second = $('#secondBlock').val();
 	var third = $('#thirdBlock').val();
-	
+
 	//Get the digits from the second box
 	var secondFirstDigit = second.substring(0,1);
 	var secondSecondDigit = second.substring(1,2);
@@ -30,17 +30,17 @@ $('#go').click(function () {
 	var thirdFirstDigit = third.substring(0,1);
 	var thirdSecondDigit = third.substring(1,2);
 	var thirdThirdDigit = third.substring(2,3);
-	
+
 	if(checkAtlasCoordinate(first, second, third, secondFirstDigit, secondSecondDigit, thirdFirstDigit, thirdSecondDigit, thirdThirdDigit))
 	{
 		if(atlasConversion(first, secondFirstDigit, secondSecondDigit, thirdFirstDigit, thirdSecondDigit, thirdThirdDigit)){
 			divDeg.innerHTML = "<strong>Decimal Degrees (NAD27): </strong>" + "Latitude: " + latDeg + " " + "Longitude: -" + lonDeg;
 			divDMS.innerHTML = "<strong>ddmmss.ss (NAD27):</strong>" + "Latitude: " + latDMS + " Longitude: -" + lonDMS;
-			
+
 			var quadResult = findQuad(Number(latDMS), Number(lonDMS));
 			divQuad.innerHTML = "<strong>USGS Quadrangle: </strong>" + quadResult;
-			
-			
+
+
 		}
 		else{
 			divErr.innerHTML = "<strong>Error: </strong>" + errOutput + "<p>";//Display an appropriate error message;
@@ -56,8 +56,8 @@ $('#go').click(function () {
 
 //When a user clicks Calculate on DMS lat -> atlas
 $('#goDMS').click(function () {
-	
-	
+
+
 	var divErr = document.getElementById('errorDMS');
 	var divSh = document.getElementById('outputSheet');
 	var divQuad = document.getElementById('outputQuadDMS');
@@ -75,12 +75,12 @@ $('#goDMS').click(function () {
 	lon = Math.abs(Number(lon));
 	lat = "" + lat;
 	lon = "" + lon;
-	
+
 	//Break down the dms for lat and long
 	var latD = lat.substring(0,2);
 	var latM = lat.substring(2,4);
 	var latS = lat.substring(4,6);
-	
+
 	var lonD = lon.substring(0,2);
 	var lonM = lon.substring(2,4);
 	var lonS = lon.substring(4,6);
@@ -91,7 +91,7 @@ $('#goDMS').click(function () {
 	{
 		if(latConversion(Number(latD), Number(latM), Number(latS), Number(lonD), Number(lonM), Number(lonS))){
 			divSh.innerHTML = "<strong>Atlas Sheet Coordinates: </strong>" + atlasSh + " : " + atlasBl + " : " + atlasSq;
-			
+
 			var quadResult = findQuad(Number(lat), Number(lon));
 			divQuad.innerHTML = "<strong>USGS Quadrangle: </strong>" + quadResult;
 		}
@@ -129,15 +129,15 @@ $('#download').click(function () {
 
 
 		var textbox = document.getElementById('batchAreaOut');
-		
+
 		this.href = makeTextFile(textbox.value);
 	}
-	
+
 });
 
 $('#goDeg').click(function () {
-	
-	
+
+
 	var divErr = document.getElementById('errorDMS');
 	var divSh = document.getElementById('outputSheet');
 	var divQuad = document.getElementById('outputQuadDMS');
@@ -153,17 +153,17 @@ $('#goDeg').click(function () {
 
 	lat = Math.abs(Number(lat));
 	lon = Math.abs(Number(lon));
-	
+
 	if(degToDMS(lat, lon))
 	{
 		lat = "" + degDMSLat;
 		lon = "" + degDMSLon;
-		
+
 		//Break down the dms for lat and long
 		var latD = lat.substring(0,2);
 		var latM = lat.substring(2,4);
 		var latS = lat.substring(4,6);
-		
+
 		var lonD = lon.substring(0,2);
 		var lonM = lon.substring(2,4);
 		var lonS = lon.substring(4,6);
@@ -174,7 +174,7 @@ $('#goDeg').click(function () {
 		{
 			if(latConversion(Number(latD), Number(latM), Number(latS), Number(lonD), Number(lonM), Number(lonS))){
 				divSh.innerHTML = "<strong>Atlas Sheet Coordinates: </strong>" + atlasSh + " : " + atlasBl + " : " + atlasSq;
-				
+
 				var quadResult = findQuad(Number(lat), Number(lon));
 				divQuad.innerHTML = "<strong>USGS Quadrangle: </strong>" + quadResult;
 			}
@@ -193,13 +193,13 @@ $('#goDeg').click(function () {
 
 
 $('#goBatchAt').click(function () {
-	
+
 	var outArea = document.getElementById('batchAreaOut');
 	outArea.innerHTML = "";
 
 	var count = 0;
 	var textArea = document.getElementById('batchArea');
-	var lines = $("#batchArea").val().split("\n");  
+	var lines = $("#batchArea").val().split("\n");
 	for(i = 0; i < lines.length; i++)
 	{
 		if(lines[i] == "")
@@ -209,7 +209,7 @@ $('#goBatchAt').click(function () {
 		else count++;
 	}
 	//console.log(count);
-	
+
 	if($('#chx').is(':checked') == true)
 	{
 		for(z = 0; z < count; z++)
@@ -219,7 +219,7 @@ $('#goBatchAt').click(function () {
 			var first = lines[z].substring(0,2);
 			var second = lines[z].substring(3,5);
 			var third = lines[z].substring(6,9);
-			
+
 			//Get the digits from the second box
 			var secondFirstDigit = second.substring(0,1);
 			var secondSecondDigit = second.substring(1,2);
@@ -228,9 +228,9 @@ $('#goBatchAt').click(function () {
 			var thirdFirstDigit = third.substring(0,1);
 			var thirdSecondDigit = third.substring(1,2);
 			var thirdThirdDigit = third.substring(2,3);
-			
+
 			//console.log("" + first + ":" + second + ":" + third);
-			
+
 			if(checkAtlasCoordinate(first, second, third, secondFirstDigit, secondSecondDigit, thirdFirstDigit, thirdSecondDigit, thirdThirdDigit))
 			{
 				if(atlasConversion(first, secondFirstDigit, secondSecondDigit, thirdFirstDigit, thirdSecondDigit, thirdThirdDigit)){
@@ -238,18 +238,18 @@ $('#goBatchAt').click(function () {
 					outString = latDeg + " " + lonDeg;
 					var length = outString.length;
 					//console.log(length);
-					
+
 					if(length <= 40)
 					{
 						for(v = 0; v < 40 - length; v++)
 						{
 							outString += " ";
 						}
-						
+
 					}
 					//console.log(outString);
-					
-					
+
+
 					//outString = outString + "(DDMMSS NAD27) Latitude: " + latDMS + " Longitude: -" + lonDMS + "\n";
 
 					//divDeg.innerHTML = "<strong>Decimal Degrees (NAD27): </strong>" + "Latitude: " + latDeg + " " + "Longitude: -" + lonDeg;
@@ -267,13 +267,13 @@ $('#goBatchAt').click(function () {
 
 				}
 
-			} else 
+			} else
 			{
 				outString = "" + first + ":" + second + ":" + third + "\n=========\n"
 				outString += "Error: " + errOutput + "\n";
 			}
 			outArea.innerHTML += outString;
-			
+
 		}
 	}
 	else{
@@ -284,7 +284,7 @@ $('#goBatchAt').click(function () {
 			var first = lines[z].substring(0,2);
 			var second = lines[z].substring(3,5);
 			var third = lines[z].substring(6,9);
-			
+
 			//Get the digits from the second box
 			var secondFirstDigit = second.substring(0,1);
 			var secondSecondDigit = second.substring(1,2);
@@ -293,9 +293,9 @@ $('#goBatchAt').click(function () {
 			var thirdFirstDigit = third.substring(0,1);
 			var thirdSecondDigit = third.substring(1,2);
 			var thirdThirdDigit = third.substring(2,3);
-			
+
 			//console.log("" + first + ":" + second + ":" + third);
-			
+
 			if(checkAtlasCoordinate(first, second, third, secondFirstDigit, secondSecondDigit, thirdFirstDigit, thirdSecondDigit, thirdThirdDigit))
 			{
 				if(atlasConversion(first, secondFirstDigit, secondSecondDigit, thirdFirstDigit, thirdSecondDigit, thirdThirdDigit)){
@@ -318,13 +318,13 @@ $('#goBatchAt').click(function () {
 
 				}
 
-			} else 
+			} else
 			{
 				outString = "" + first + ":" + second + ":" + third + "\n=========\n"
 				outString += "Error: " + errOutput + "\n";
 			}
 			outArea.innerHTML += outString;
-			
+
 		}
 	}
 
@@ -351,12 +351,12 @@ $('#export').click(function() {
 
 		var count = 0;
 		var inparea = document.getElementById('batchArea');
-		var asc = $("#batchArea").val().split("\n");  
+		var asc = $("#batchArea").val().split("\n");
 
-		
+
 		var raw = document.getElementById('batchAreaOut');
 		var count = 0;
-		var lines = $("#batchAreaOut").val().split("\n");  
+		var lines = $("#batchAreaOut").val().split("\n");
 
 		var textbox = '<?xml version="1.0" encoding="UTF-8"?>\n' +
 		'<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
@@ -364,7 +364,7 @@ $('#export').click(function() {
 		'\t<name>batchGEPoints.kml</name>\n' +
 		'\t<Folder>\n' +
 		'\t\t<name>Points</name>\n';
-		
+
 		for(i = 0; i < lines.length; i++)
 		{
 			lines[i] = lines[i].replace(/ {2,}/g, ", ");
@@ -374,7 +374,7 @@ $('#export').click(function() {
 				//skip these ones(sometimes the last element)
 			}
 			else {
-			
+
 				var sp = lines[i].split(", ");
 				textbox += '\t\t<Placemark>\n' +
 				'\t\t\t<name>' + sp[2] +'</name>\n' +
@@ -384,12 +384,12 @@ $('#export').click(function() {
 				'\t\t\t</Point>\n' +
 				'\t\t</Placemark>\n';
 			}
-			
+
 			//console.log(lines[i]);
 		}
-		
+
 		// +
-		//lines = $("#batchAreaOut").val().split(/\s/); 
+		//lines = $("#batchAreaOut").val().split(/\s/);
 		textbox += '\t</Folder>\n' +
 		'</Document>\n' +
 		'</kml>';
@@ -397,7 +397,7 @@ $('#export').click(function() {
 		/*
 		  <Placemark>
 			<name>Simple placemark</name>
-			<description>Attached to the ground. Intelligently places itself 
+			<description>Attached to the ground. Intelligently places itself
 			   at the height of the underlying terrain.</description>
 			<Point>
 			  <coordinates>-122.0822035425683,37.42228990140251,0</coordinates>
@@ -417,11 +417,11 @@ $("#radios input[name='type']").click(function(){
 		var atToLatDiv = document.getElementById('atToLat');
 		var displaySetting = atToLatDiv.style.display;
 		atToLatDiv.style.display = 'none';
-		
+
 		var batchDiv = document.getElementById('batch');
 		displaySetting = batchDiv.style.display;
 		batchDiv.style.display = 'none';
-		
+
 		atToLatDiv = document.getElementById('latToAt');
 		var displaySetting = atToLatDiv.style.display;
 		atToLatDiv.style.display = 'block';
@@ -430,29 +430,44 @@ $("#radios input[name='type']").click(function(){
 		var atToLatDiv = document.getElementById('atToLat');
 		var displaySetting = atToLatDiv.style.display;
 		atToLatDiv.style.display = 'block';
-		
+
 		var batchDiv = document.getElementById('batch');
 		displaySetting = batchDiv.style.display;
 		batchDiv.style.display = 'none';
-		
+
 		atToLatDiv = document.getElementById('latToAt');
 		var displaySetting = atToLatDiv.style.display;
 		atToLatDiv.style.display = 'none';
-	
+
 	}
 	else if($('input:radio[name=type]:checked').val() == "batchAt"){
-	
+
 		var batchDiv = document.getElementById('batch');
 		displaySetting = batchDiv.style.display;
 		batchDiv.style.display = 'block';
-		
+
 		var atToLatDiv = document.getElementById('latToAt');
 		displaySetting = atToLatDiv.style.display;
 		atToLatDiv.style.display = 'none';
-		
+
 		var latToDiv = document.getElementById('atToLat');
 		displaySetting = latToDiv.style.display;
 		latToDiv.style.display = 'none';
-	
+
 	}
 });
+
+function initRadio(){
+	var atToLatDiv = document.getElementById('atToLat');
+	var displaySetting = atToLatDiv.style.display;
+	atToLatDiv.style.display = 'block';
+
+	var batchDiv = document.getElementById('batch');
+	displaySetting = batchDiv.style.display;
+	batchDiv.style.display = 'none';
+
+	atToLatDiv = document.getElementById('latToAt');
+	var displaySetting = atToLatDiv.style.display;
+	atToLatDiv.style.display = 'none';
+}
+initRadio();

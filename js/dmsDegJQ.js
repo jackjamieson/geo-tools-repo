@@ -2,9 +2,9 @@
 
 
 $('#goDMS').click(function () {
-	
 
-	
+
+
 	var divErr = document.getElementById('error');
 	var divDeg = document.getElementById('outputDeg');
 
@@ -14,19 +14,19 @@ $('#goDMS').click(function () {
 	//Grab the values from the text boxes
     var lat = $('#dmsLat').val();
 	var lon = $('#dmsLon').val();
-	
+
 	lat = "" + lat;
 	lon = "" + lon;
-	
+
 	//Break down the dms for lat and long
 	var latD = lat.substring(0,2);
 	var latM = lat.substring(2,4);
 	var latS = lat.substring(4,6);
-	
+
 	var lonD = lon.substring(0,2);
 	var lonM = lon.substring(2,4);
 	var lonS = lon.substring(4,6);
-	
+
 	if(checkDMS(lat, lon))
 	{
 		var degLat =  Number(dmsToDegLat(latD, latM, latS)).toFixed(3);
@@ -40,8 +40,8 @@ $('#goDMS').click(function () {
 });
 
 $('#goDeg').click(function () {
-	
-	
+
+
 	var divErr = document.getElementById('errorDMS');
 	var divDMS = document.getElementById('outputDMS');
 
@@ -55,16 +55,16 @@ $('#goDeg').click(function () {
 
 	lat = Math.abs(Number(lat));
 	lon = Math.abs(Number(lon));
-	
+
 	if(checkDeg(lat, lon))
 	{
 		var dmsLat = degToDMSLat(lat);
 		var dmsLon = degToDMSLon(lon);
 		//Break down the dms for lat and long
-		
+
 		divDMS.innerHTML = "<strong>DDMMSS: </strong>" + "Latitude: " + dmsLat + " Longitude: -" + dmsLon;//Clear the errors when the button is clicked again
 
-		
+
 	}
 	else divErr.innerHTML = "<strong>Error: </strong>" + errOutput + "<p>";//Display an appropriate error message;
 });
@@ -78,7 +78,7 @@ $("#radios input[name='type']").click(function(){
 		var dmsDiv = document.getElementById('dmsToDeg');
 		var displaySetting = dmsDiv.style.display;
 		dmsDiv.style.display = 'block';
-		
+
 		degDiv = document.getElementById('degToDMS');
 		var displaySetting = degDiv.style.display;
 		degDiv.style.display = 'none';
@@ -87,11 +87,23 @@ $("#radios input[name='type']").click(function(){
 		var dmsDiv = document.getElementById('dmsToDeg');
 		var displaySetting = dmsDiv.style.display;
 		dmsDiv.style.display = 'none';
-		
+
 		degDiv = document.getElementById('degToDMS');
 		var displaySetting = degDiv.style.display;
 		degDiv.style.display = 'block';
-	
+
 	}
 
 });
+
+function initRadios(){
+	var dmsDiv = document.getElementById('dmsToDeg');
+	var displaySetting = dmsDiv.style.display;
+	dmsDiv.style.display = 'block';
+
+	degDiv = document.getElementById('degToDMS');
+	var displaySetting = degDiv.style.display;
+	degDiv.style.display = 'none';
+}
+
+initRadios();

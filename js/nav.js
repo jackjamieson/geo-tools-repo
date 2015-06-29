@@ -1,40 +1,53 @@
 
-var divNav = document.getElementById('topNav');
-divNav.innerHTML = 	'<nav>' +
-	//'<img style="float:right;" src="img/njgwslogsm2.jpg"/>' +
-	'<span class="top">Geologic Web Utilities</span><br>' +
-	'<ul>' +
-	'<li><a href="index.html">Home</a></li>' +
-	'<li>'+
-	'<a href="#">Conversion Tools</a>'+
-	'<ul>'+
-    '<li><a href="fdmconvert.html">Field Data Management to CSV</a></li>'+
-	'<li><a href="atlas.html">NJ Atlas Sheet Coordinates to NAD27</a></li>'+
-	'<li><a href="dmsdeg.html">NAD27 Decimal Degree to DDMMSS</a></li>'+
-	'<li><a href="http://www.ngs.noaa.gov/cgi-bin/nadcon.prl" target="_blank" >NADCON NAD27 Decimal Degree to NAD83 DDMMSS (external)</a></li>'+
-	'<li><a href="http://www.earthpoint.us/convert.aspx" target="_blank" >State Plane Feet and Other Coordinate Conversions (external)</a></li>'+
+var curPage = (window.location.href.substring(window.location.href.lastIndexOf("/")+1, window.location.href.length));
 
-	'<li><a href="help.html">Conversion Tools Help</a></li>'+
-	'</ul>'+
-	'</li>'+
-	'<li><a href="3ppfull.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
-	'<li><a href="exceltoKML.html">Excel to KML Formatter</a></li>' +
-	'<li><a href="xmlgen.html">XML Metadata Generator</a></li>'
-'</ul>'+
+var isActive,isActive2,isActive3,isActive4,isActive5,isActive6;
 
-	'</nav><hr></hr>';
+if(curPage === 'index.html')
+{
+	isActive = "active";
+}
+if(curPage === 'conversion.html' || curPage === 'fdmconvert.html' || curPage === 'atlas.html' || curPage === 'dmsdeg.html' || curPage === 'help.html'){
+	isActive2 = "active";
+}
+if(curPage === '3ppops.html' || curPage === 'ww3pp.html'){
+	isActive3 = "active";
+}
+if(curPage === 'exceltoKML.html'){
+	isActive4 = "active";
+}
+if(curPage === 'xmlgen.html'){
+	isActive5 = "active";
+}
+if(curPage === 'kmlfmt.html'){
+	isActive6 = "active";
+}
 
-var footer = document.getElementById('foot');
-footer.innerHTML = 	'<hr><br>Developed by Jack Jamieson and Greg Herman.  No rights reserved.';// +
+var divNav = document.getElementById('leftcolumn');
+divNav.innerHTML =
+'<ul class="nav nav-pills nav-stacked">' +
+	'<li class="' + isActive + '"><a href="index.html">Home</a></li>' +
+	'<li class="' + isActive2 + '"><a href="conversion.html">Conversion Tools</a></li>' +
+	'<li class="' + isActive3 + '"><a href="3ppops.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
+	'<li class="' + isActive4 + '"><a href="exceltoKML.html">Excel to KML Formatter</a></li>' +
+	'<li class="' + isActive5 + '"><a href="xmlgen.html">XML Metadata Generator</a></li>' +
+	'<li class="' + isActive6 + '"><a href="kmlfmt.html">USGS KML Formatter</a></li>'
+'</ul>';
 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+var header = document.getElementById('header');
+header.innerHTML = 	'<p>Geologic Web Utilities</p>';
 
-  ga('create', 'UA-40920141-1', 'auto');
-  ga('send', 'pageview');
+ var footer = document.getElementById('footer');
+ footer.innerHTML = 	'<p>Developed by Jack Jamieson and Greg Herman.  No rights reserved.</p>';// +
 
+//   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+//
+//   ga('create', 'UA-40920141-1', 'auto');
+//   ga('send', 'pageview');
+//
 
 
 //'<br><br>' +

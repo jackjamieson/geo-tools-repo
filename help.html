@@ -1,82 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
 <head>
-    <meta charset="utf-8">
-	<link rel="stylesheet" href="css/pure-min.css">
-	<link rel="stylesheet" href="css/buttons-min.css">
-    <link rel="stylesheet" href="css/menus-min.css">
-	<link rel="stylesheet" href="css/style.css">
+<title>Geologic Web Utilities</title>
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="css/865115.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
-
 <body>
-    <title>Geologic Web Utilities - Atlas Sheet Help</title>
-    <div class="page">
-	
-	<div id="topNav"></div>
-		
-        
-		<div class="content">
-        <p></p>
-		<h2>Conversion Tools - Help</h2>
-		<p>The Atlas Sheet Conversion utilities help you convert between Atlas Sheet Coordinates (e.g. 22-05-1-2-3) and Decimal Degree
-		and Degree Minute Second latitude and longitude in NAD 27.  The batch version only converts Atlas Sheets into latitude longitudes.
-		It's output can be formatted for use with NADCON to convert NAD 27 to NAD 83.
-		<br><br>The help topics also apply to the Decimal Degree to DDMMSS converter.</p>
-		<br><strong>Help topics for the Atlas Sheet Conversion utilities:</strong>
-		<br><a href="#inputs">What are the accepted inputs?</a>
-		<br><a href="#batchTool">How do I use the batch tool?</a>
-		<br><a href="#nadcon">What is the "Format for NADCON" option?</a>
-		<br><a href="#conv">Where can I find the old conversions online?</a>
-		
-		<h4><a id="inputs">What are the accepted inputs?</a></h4>
-		Only positive numbers are accepted.  For latitude and longitude it is assumed they are N and W respectively.
-		<br><br><u>For Atlas Sheet to Lat/Long:</u>
-		<br>There are three text boxes representing the different parts of the Atlas Sheet.  It is looks like Sheet:Block:[Rectangle][Square][Unit].
-		For example, 22:12:111 would be 22-12-1-1-1 on an Atlas Sheet.  All fields must be filled in completely, so if a block is 4
-		for example, you must enter 04 for the field to be complete.
-		<br><br><u>For Lat/Long to Atlas Sheet:</u>
-		<br>You can use either the DDMMSS input or the Decimal Degree input.  Clicking Calculate on either will output the result below 
-		it.  DDMMSS only accepts 6 digits, no decimals.  Decimal degree can have a variable amount of decimal places, but will
-		output accurate to 7 decimals.
-		<br><br><u>For Batch Atlas Sheet:</u>
-		<br>You must enter the Atlas Sheet in the format "##:##:###", similar to the single sheet conversion.  Each new coordinate
-		must be entered on a new line, one per line.
-		
-		<h4><a id="batchTool">How do I use the batch tool?</a></h4>
-		Following the input rules found in "What are the accepted inputs?", the batch tool is used the same way as the 
-		single point calculations.  When you are satisfied with what you have entered, hit Calculate and the results
-		will be displayed in the Output box to the right.
-		<br><br>If the checkbox "Format for NADCON" is not checked, the output will be formatted in a more readable format.
-		
-		<h4><a id="nadcon">What is the "Format for NADCON" option?</a></h4>
-		If you would like to convert the Atlas Sheet batch output from NAD 27 to NAD 83, the tool can format the output
-		for use with the NADCON converter tools found at <a href="http://www.ngs.noaa.gov/cgi-bin/nadcon.prl">http://www.ngs.noaa.gov/cgi-bin/nadcon.prl</a>
-		<br><br>The checkbox must be checked in order for the tool to output it in the correct format.  When you are ready to bring the output
-		into NADCON, click Download Output, go to NADCON, and make sure these settings are selected:
-		<ul>
-			<li>NAD 27 to NAD 83</li>
-			<li>Free Format 2</li>
-		</ul>
-		You may choose whichever output you want from NADCON.
-		
-		<p>This checkbox must also be checked in order to export the file as KML!</p>
-		
-		
-		<h4><a id="conv">Where can I find the old conversions online?</a></h4>
-		For Latitude Longitude <=> State Plane - <a href="http://www.earthpoint.us/convert.aspx">http://www.earthpoint.us/convert.aspx</a>
-		<br>This site also has many other conversions in the WGS84 datum.
-		
-		</div>
-	
-	
-	<div id="foot" class="foot"></div>
-	
+    <div id="wrapper">
+
+        <div id="header">
+        </div>
+
+        <div id="contentliquid">
+            <div id="content">
+                <h2>Conversion Tools - Help</h2>
+                The Atlas Sheet Conversion utilities help you convert between Atlas Sheet Coordinates (e.g. 22-05-1-2-3) and Decimal Degree
+                and Degree Minute Second latitude and longitude in NAD 27.  The batch version only converts Atlas Sheets into latitude longitudes.
+                It's output can be formatted for use with NADCON to convert NAD 27 to NAD 83.
+                <br><br>The help topics also apply to the Decimal Degree to DDMMSS converter.<br>
+                <br><strong>Help topics for the Atlas Sheet Conversion utilities:</strong>
+                <br><a href="#inputs">What are the accepted inputs?</a>
+                <br><a href="#batchTool">How do I use the batch tool?</a>
+                <br><a href="#nadcon">What is the "Format for NADCON" option?</a>
+                <br><a href="#conv">Where can I find the old conversions online?</a>
+
+                <h4><a id="inputs">What are the accepted inputs?</a></h4>
+                Only positive numbers are accepted.  For latitude and longitude it is assumed they are N and W respectively.
+                <br><br><u>For Atlas Sheet to Lat/Long:</u>
+                <br>There are three text boxes representing the different parts of the Atlas Sheet.  It is looks like Sheet:Block:[Rectangle][Square][Unit].
+                For example, 22:12:111 would be 22-12-1-1-1 on an Atlas Sheet.  All fields must be filled in completely, so if a block is 4
+                for example, you must enter 04 for the field to be complete.
+                <br><br><u>For Lat/Long to Atlas Sheet:</u>
+                <br>You can use either the DDMMSS input or the Decimal Degree input.  Clicking Calculate on either will output the result below
+                it.  DDMMSS only accepts 6 digits, no decimals.  Decimal degree can have a variable amount of decimal places, but will
+                output accurate to 7 decimals.
+                <br><br><u>For Batch Atlas Sheet:</u>
+                <br>You must enter the Atlas Sheet in the format "##:##:###", similar to the single sheet conversion.  Each new coordinate
+                must be entered on a new line, one per line.
+
+                <h4><a id="batchTool">How do I use the batch tool?</a></h4>
+                Following the input rules found in "What are the accepted inputs?", the batch tool is used the same way as the
+                single point calculations.  When you are satisfied with what you have entered, hit Calculate and the results
+                will be displayed in the Output box to the right.
+                <br><br>If the checkbox "Format for NADCON" is not checked, the output will be formatted in a more readable format.
+
+                <h4><a id="nadcon">What is the "Format for NADCON" option?</a></h4>
+                If you would like to convert the Atlas Sheet batch output from NAD 27 to NAD 83, the tool can format the output
+                for use with the NADCON converter tools found at <a href="http://www.ngs.noaa.gov/cgi-bin/nadcon.prl">http://www.ngs.noaa.gov/cgi-bin/nadcon.prl</a>
+                <br><br>The checkbox must be checked in order for the tool to output it in the correct format.  When you are ready to bring the output
+                into NADCON, click Download Output, go to NADCON, and make sure these settings are selected:
+                <ul>
+                    <li>NAD 27 to NAD 83</li>
+                    <li>Free Format 2</li>
+                </ul>
+                You may choose whichever output you want from NADCON.
+
+                <br><br>This checkbox must also be checked in order to export the file as KML!</p>
+
+
+                <h4><a id="conv">Where can I find the old conversions online?</a></h4>
+                For Latitude Longitude <=> State Plane - <a href="http://www.earthpoint.us/convert.aspx">http://www.earthpoint.us/convert.aspx</a>
+                <br>This site also has many other conversions in the WGS84 datum.
+                <p></p>
+            </div>
+       </div>
+
+
+        <div id="leftcolumn">
+        </div>
+
+
+        <div id="footer">
+        </div>
+    </div>
 </body>
-	
-	<!-- Scripts at the bottom so the page loads faster !-->
-	<script src='js/nav.js'></script>
-	<script src='js/yui-min.js'></script>
+
+<script src='js/nav.js'></script>
 
 </html>
-

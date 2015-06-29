@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+<title>Geologic Web Utilities</title>
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="css/865115.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="wrapper">
 
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/pure-min.css">
-		<link rel="stylesheet" href="css/buttons-min.css">
-		<link rel="stylesheet" href="css/menus-min.css">
-		<link rel="stylesheet" href="css/style.css">
-	</head>
+        <div id="header">
+        </div>
 
-	<body onload="clearIt.reset();">
-		<title>Geologic Web Utilities - Atlas Sheet Conversion</title>
-		<div class="page">
-
-			<div id="topNav"></div>
-
-
-			<div class="content">
-				<p></p>
+        <div id="contentliquid">
+            <div id="content">
 				<h2>Atlas Sheet Conversions</h2>
 
 				<div id="radios">
@@ -26,12 +25,12 @@
 						<input type="radio" name="type" value="latToAtr"> Lat/Long to Atlas Sheet<br>
 						<input type="radio" name="type" value="batchAt"> Batch Atlas Conversion<br>
 					</form>
-				</div> 
+				</div>
 
 				<br>
 				<div id="atToLat">
 					This tool converts Atlas Sheet Coordinates into 3 different formats.
-					<p><i>Input example: 22 : 12 : 123 to represent 22-12-1-2-3.  Click Calculate and the results will be displayed below.</i>
+					<br><br><i>Input example: 22 : 12 : 123 to represent 22-12-1-2-3.  Click Calculate and the results will be displayed below.</i>
 
 					<h3>Atlas Sheet Coordinates:</h3>
 					<div class='inputs'>
@@ -44,19 +43,19 @@
 
 					<br>
 
-					<a href="#" class="pure-button pure-button-primary" id="go">Calculate</a>
+					<a href="#" class="btn btn-primary" id="go">Calculate</a>
 
 					<h3>Output:</h3>
 					<div id="error"></div>
 					<div id="outputDMS"><strong>ddmmss.ss (NAD27): </strong></div>
 					<div id="outputDeg"><strong>Decimal Degrees (NAD27): </strong></div>
 					<div id="outputQuad"><strong>USGS Quadrangle: </strong></div>
-
+					<br>
 				</div>
 
 				<div id="latToAt">
 					This tool converts Latitude/Longitude coordinates into Atlas Sheet Coordinates.
-					<p><i>Input example: Lat 411752 Long 743845 (no negatives).  Click Calculate and the results will be displayed below.</i>
+					<br><br><i>Input example: Lat 411752 Long 743845 (no negatives).  Click Calculate and the results will be displayed below.</i>
 
 					<h3>DDMMSS (NAD27) Coordinates:</h3>
 					<div class='inputs'>
@@ -65,9 +64,9 @@
 
 					</div>
 					<br>
-					<a href="#" class="pure-button pure-button-primary" id="goDMS">Calculate</a>
+					<a href="#" class="btn btn-primary" id="goDMS">Calculate</a>
 
-					<p>OR</p>
+					<br><br><strong>OR</strong><br><br>
 
 					<i>Input example: Lat 41.2981481 Long 74.6462963 (no negatives). Click Calculate and the results will be displayed below. </i>
 					<h3>Decimal Degree (NAD27):</h3>
@@ -77,15 +76,16 @@
 
 					</div>
 
+
 					<br>
 
-					<a href="#" class="pure-button pure-button-primary" id="goDeg">Calculate</a>
+					<a href="#" class="btn btn-primary" id="goDeg">Calculate</a>
 
 					<h3>Output:</h3>
 					<div id="errorDMS"></div>
 					<div id="outputSheet"><strong>Atlas Sheet Coordinates: </strong></div>
 					<div id="outputQuadDMS"><strong>USGS Quadrangle: </strong></div>
-
+					<br>
 
 				</div>
 
@@ -93,45 +93,45 @@
 					This tool batch converts Atlas Sheet Coordinates into 3 different formats.
 					<br>It can also output in a format for converting NAD27 Decimal Degree to NAD83 DDMMSS.  Check the box above the output to select this option.
 					You can save this file and import it by going to the NADCON link in the dropdown menu.  <a href="help.html">See the help file for more information.</a>
-					<p><strong>The checkbox must be checked to download or export.</strong>
-					<p><i>Input example: "22:12:123" without the quotes, one per line.  Click Calculate and the results will be displayed to the right.</i>
+					<br><br><strong>The checkbox must be checked to download or export.</strong>
+					<br><i>Input example: "22:12:123" without the quotes, one per line.  Click Calculate and the results will be displayed to the right.</i>
 
 					<h3>Atlas Sheet Coordinates: <span style="margin-left:30px;">Output: </span></h3>
 					<input type="checkbox" id="chx" name="frmt" style="margin-left:247px;" value="NADCON"> Format for NADCON / KML<br>
 					<div class='inputs'>
-						<textarea name="textarea" id="batchArea" rows="15" cols="20"></textarea>
-						<textarea style="margin-left:60px;" name="outputArea" id="batchAreaOut" rows="15" cols="80"></textarea>
+						<textarea name="textarea" id="batchArea" rows="13" cols="20"></textarea>
+						<textarea style="margin-left:13px;" name="outputArea" id="batchAreaOut" rows="13" cols="60"></textarea>
 
 					</div>
 
 					<br>
 
-					<a href="#" class="pure-button pure-button-primary" id="goBatchAt">Calculate</a>
-					<a href="#" download="batchOutput.txt" class="pure-button pure-button-primary" id="download">Download Output</a>
-					<a href="#" download="batchGEPoints.kml" class="pure-button pure-button-primary" id="export">Export KML (NAD27)</a>
-
+					<a href="#" class="btn btn-primary" id="goBatchAt">Calculate</a>
+					<a href="#" download="batchOutput.txt" class="btn btn-primary" id="download">Download Output</a>
+					<a href="#" download="batchGEPoints.kml" class="btn btn-primary" id="export">Export KML (NAD27)</a>
+					<p></p>
 
 
 				</div>
-			</div>
+
+            </div>
+       </div>
 
 
+        <div id="leftcolumn">
+        </div>
 
 
-		<div id="foot" class="foot"></div>
-					</div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
 
+<script src='js/nav.js'></script>
+<script src='js/jquery-1.11.1.min.js'></script>
 
-
-	</body>
-
-	<!-- Scripts at the bottom so the page loads faster !-->
-	<script src='js/nav.js'></script>
-	<script src='js/jquery-1.11.1.min.js'></script>
-	<script src="js/NAD27.js" type="text/javascript"></script>
-	<script src="js/njgsConversionUtil.js" type="text/javascript"></script>
-	<script src="js/atlasJQ.js" type="text/javascript"></script>
-	<script src='js/yui-min.js'></script>
+<script src="js/NAD27.js" type="text/javascript"></script>
+<script src="js/njgsConversionUtil.js" type="text/javascript"></script>
+<script src="js/atlasJQ.js" type="text/javascript"></script>
 
 </html>
-
