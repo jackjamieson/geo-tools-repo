@@ -19,7 +19,7 @@ p {
     min-width: 400px;
     max-width: 2000px;
     margin: 0 auto;
-    padding:20px;
+    padding:0px;
 
 }
 
@@ -27,7 +27,7 @@ p {
     float: left;
     height: 75px;
     width: 100%;
-    background: #0074D9;
+    background: #262626;
     color: #FFFFFF;
     font-size:25px;
     font-weight:600;

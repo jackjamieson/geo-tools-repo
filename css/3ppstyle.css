@@ -5,11 +5,13 @@
 
 body {
 	min-height:100%
+	font-family: 'Open Sans', sans-serif;
+
 
 }
-html { 
+html {
 	min-height:100%;/* make sure it is at least as tall as the viewport */
-	
+
 	 }
 
 
@@ -17,8 +19,8 @@ html {
 
 .page {
 	  min-height:100%;
-  
-		
+
+
 
 }
 
@@ -34,8 +36,8 @@ html {
 	#main-content {
 		height: 100%;
 		margin-left: 320px;
-		
-		
+
+
 	}
 
 #sidebar {
@@ -44,6 +46,8 @@ html {
 	float: left;
 	height:100vh;
 	padding: 0 2px 0 15px;
+	font-family: 'Open Sans', sans-serif;
+
 	}
 	#sidebar ul {
 		list-style: inside;
@@ -63,7 +67,7 @@ html {
 	padding:20px;
 	padding-left:200px;
 	padding-right:200px;
-	
+
 }
 
 .linkBack{
@@ -74,5 +78,3 @@ html {
 #lat1, #lon1, #alt1, #lat2, #lon2, #alt2 ,#lat3, #lon3, #alt3{
     width:5em;
 }
-
-

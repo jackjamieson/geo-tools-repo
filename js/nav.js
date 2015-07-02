@@ -7,16 +7,16 @@ if(curPage === 'index.html')
 {
 	isActive = "active";
 }
-if(curPage === 'conversion.html' || curPage === 'fdmconvert.html' || curPage === 'atlas.html' || curPage === 'dmsdeg.html' || curPage === 'help.html'){
+if(curPage === 'conversion.html' || curPage === 'fdmconvert.html' || curPage === 'atlas.html' || curPage === 'dmsdeg.html' || curPage === 'help.html' || curPage === 'fdmhelp.html'){
 	isActive2 = "active";
 }
 if(curPage === '3ppops.html' || curPage === 'ww3pp.html'){
 	isActive3 = "active";
 }
-if(curPage === 'exceltoKML.html'){
+if(curPage === 'exceltoKML.html' || curPage === 'formatters.html' || curPage === 'exceltoKMLPlacemarks.html'){
 	isActive4 = "active";
 }
-if(curPage === 'xmlgen.html'){
+if(curPage === 'xmlgen.html' || curPage === 'xmlhelp.html'){
 	isActive5 = "active";
 }
 if(curPage === 'kmlfmt.html'){
@@ -29,7 +29,7 @@ divNav.innerHTML =
 	'<li class="' + isActive + '"><a href="index.html">Home</a></li>' +
 	'<li class="' + isActive2 + '"><a href="conversion.html">Conversion Tools</a></li>' +
 	'<li class="' + isActive3 + '"><a href="3ppops.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
-	'<li class="' + isActive4 + '"><a href="exceltoKML.html">Excel to KML Formatter</a></li>' +
+	'<li class="' + isActive4 + '"><a href="formatters.html">Excel to KML Formatters</a></li>' +
 	'<li class="' + isActive5 + '"><a href="xmlgen.html">XML Metadata Generator</a></li>' +
 	'<li class="' + isActive6 + '"><a href="kmlfmt.html">USGS KML Formatter</a></li>'
 '</ul>';

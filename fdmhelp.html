@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
@@ -18,15 +17,21 @@
 
         <div id="contentliquid">
             <div id="content">
-				<h2>FDM Converter</h2>
-                <a href="fdmhelp.html" class="btn btn-default">Help Docs</a>
+                <h2>Field Data Management Converter - Help</h2>
+                The FDM converter changes legacy .fd files into .csv files.  The .csv files can easily be read by Excel and formatted further
+				 at that point.
                 <br><br>
-					Upload .FD files here to convert them to ESRI readable .TXT files with proper dip/dip azimuth.<br><br>
-					<input type="file" id="fileinput" />
-					<br><a href="#" download="output.csv" class="btn btn-primary" id="convert" >Convert</a>
+				<center><img width="75%" src="./img/fd.png"/><br>Example .fd file opened up in WordPad</center>
 
-
-
+				<br>
+				<h3>Instructions:</h3>
+				1. Go to the <a href="fdmconvert.html">FDM Converter</a> and browse for your .fd file.
+				<br>2. Click the 'Convert' button.
+				<br>3. Save the .csv output.  Open it up in Excel or WordPad to verify the results.
+<br>
+				<br><br>
+				<center><img width="75%" src="./img/excelfdm.png"/><br>Example output .csv file opened in Excel.</center>
+                <p></p>
             </div>
        </div>
 
@@ -41,7 +46,5 @@
 </body>
 
 <script src='js/nav.js'></script>
-<script src='js/jquery-1.11.1.min.js'></script>
-<script src='js/fdm.js'></script>
 
 </html>

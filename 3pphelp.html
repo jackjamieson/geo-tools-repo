@@ -25,95 +25,110 @@
 			<center><a href="3ppfull.html" class="btn btn-primary">Back to the Solver</a><br>
 				<h1>Dynamic 3-Point Geological-Plane Solver -- Help</h1>
 
-				This page contains information about how to use this tool, the mathematics behind it, and the sources referenced in its creation.</center>
+				<b>Information about what this tool does, how to use it, the mathematics behind it, some pitfalls and user tips, and a brief accuracy analysis based on a case study.</b>
+				<br><br>By Jack Jamieson and Gregory C. Herman, NJ Geological & Water Survey, Version 2014 (Beta)</center>
 			<p>
 				<strong>Topics:</strong></p>
 			<ul>
-				<li><a href="#how">How do I use this?</a></li>
 				<li><a href="#what">What is the purpose of this tool?</a></li>
-				<li><a href="#who">Who built this tool?</a></li>
-				<li><a href="#fly">Fly to</a></li>
-				<li><a href="#url">URL Import</a></li>
-				<li><a href="#toggle">Toggles</a></li>
-				<li><a href="#kml">Import KML</a></li>
-				<li><a href="#export">Export Session</a></li>
-				<li><a href="#clear">Clear All Data</a></li>
-				<li><a href="#manual">Manual Plot</a></li>
-				<li><a href="#symbols">Symbols</a></li>
-				<li><a href="#scale">Symbol Scale</a></li>
-				<li><a href="#out">Outputs</a></li>
-				<li><a href="#math">Math behind the solver</a></li>
-				<li><a href="#limitations">Limitations</a></li>
-				<li><a href="#systemreqs">System requirements</a></li>
-				<li><a href="#references">References</a></li>
-				<li><a href="#otherglobes">Moon and Mars</a></li>
+				<li><a href="#how">How does it work?</a></li>
+				<li><a href="#algo">Computer algorithm and program variables (MS Excel version)</a></li>
+				<li><a href="#use">How do I use this tool?</a></li>
+				<li><a href="#del">Delaware Water Gap example</a></li>
+				<li><a href="#other">Other commands and display options</a></li>
+				<li><a href="#kmz">KMZ and KML input options</a></li>
+				<li><a href="#limitations">Limitations and pitfalls</a></li>
+				<li><a href="#reqs">System requirements</a></li>
+				<li><a href="#refs">References</a></li>
+
 
 
 			</ul>
-			<a id="what"><strong>How do I use this?</strong></a>
-			<br>To get started with this tool, find a spot where you want measure the strike, dip, or dip azimuth of the land and Alt+Click three times along the area.  Using areas of different elevation that are in a relatively straight line will yield the best results.  Alternatively, you can enter three points and elevations into the manual plot boxes and click <a href="#manual">Manual Plot.</a><br>
-			<p>For help with using the other features of this application check the other help topics.</p>
 
 			<a id="what"><strong>What is the purpose of this tool?</strong></a>
-			<br>The purpose of this tool is to allow interactive 3D three-point problem solving.  It can be used to calculate planes, strike, dip, and many other geological features.  A powerful part of this tool is that once the symbols have been placed they can be <a href="#export">exported</a> to Google Earth Desktop to be further manipulated and examined.<br>
+			<br>This tool uses Google Earth (GE) for calculating the three-dimensional (3D) orientation of inclined (dipping) geological planes that intersect the Earth’s surface and are visible, or not masked by infrastructure, foliage, or surficial cover. Using this tool, a user interactively picks three points on the trace of a bed form, or other visually identifiable geological plane, and the tool extracts the 3D coordinates from the GE spatial reference frame, computes the dip angle and dip direction of the plane based on the input points, then places either a two-dimensional (2D) map symbol or flat, 3D disks at the second point of input along with dip (0-90) and dip azimuth (0-360) notation.  The scale of the symbol is determined automatically by the spacing of the input points, or can be specified by manual text entry for 3D colored disks. The user can generate multiple symbols during a single session that can be exported in a GE format, or saved as a delimited text file for input into a Geographic Information System (GIS). Details of the incorporated mathematics are covered below.<br>
 
-			<br><a id="who"><strong>Who built this tool?</strong></a>
-			<br>This tool was built by Jack Jamieson (Software Developer) and Greg Herman (Structural Geologist), with help from several sources on the web.  These can be found in the <a href="#references">references.</a><br>
+			<br><a id="how"><strong>How does it work?</strong></a>
+			<br>This tool is a custom JavaScript software application developed at the NJ Geological & Water Survey that uses a GE plugin within an Internet browser to extract 3D spatial coordinates picked along a visible trace of the edge of a geological plane in order to calculate and display its 3D orientation.  Distances and bearings between three points of latitude and longitude are derived using an adaptation of an 19th century navigational aid called the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine Formula</a> that uses three surface points on a sphere, the spherical law of cosines, and the radius of the Earth.  Three input points in a plane also define two vectors lying in that plane. Cross-product, algebraic manipulation of these vector’s directional components yields a lower-hemisphere solution of the plunge angle and trend (azimuth) of a vector normal to that geometric plane. The trend of the vector normal relates to the plane dip azimuth, and the plane dip compliments the plunge angle of the vector normal. </a><br>
 
-			<br><a id="fly"><strong>Fly to</strong></a>
-			<br>Fly to allows you to go anywhere on the globe simply by typing in the name of that place.  It works similarly to Google Maps and is fairly good at guessing what you are looking for.  It also accepts latitude, longitude values.<br>
+			<br><a id="algo"><strong>Computer algorithm and program variables (MS Excel version)</strong></a>
+			<br>The figure below is a screen capture of a MS Excel Worksheet detailing the mathematics and computer algorithms (in an MS Excel format). <br>
+			<br><img width="75%" src="./img/3ppexcel.png"/><br>
 
-			<br><a id="url"><strong>URL Import</strong></a>
-			<br>From the URL import box you can import a KMZ file that is hosted elsewhere on the internet.  This is the best way to get imagery into this tool.  This function was not built with importing KML in mind.  There is a <a href="#kml">seperate local upload for KML.</a><br>
+			<br><a id="use"><strong>How do I use this tool?</strong></a>
+			<ol>
+				<li>To begin a 3-point session. Using ordinary GE methods either pan and zoom to a place of interest or use the text-entry box in the location finder  to navigate to a named place of interest.  This functions like Google Maps and is good at guessing what you are looking for. Entering latitude and longitude values also works.</li>
+				<img src="img/flyto.png"/><br>
+				<li><u>Zoom in and adjust the view so that the area of interest is seen from a bird’s-eye view; so that the display isn’t tilted.</u></li>
+				<li>Pick a <i>Symbol to Plot</i> from the drop-down menu:  (default in a 3D solid-white disk)</li>
+			<ol>
+				<br>
+			The current version of the program provides options for many different, black or white, 2D map symbols including:
+			<br><img src="img/2dsymbols.png"/>
+			<br><br>or different types of 3D colored disks:
+			<br><img src="img/3dsymbols.png"/>
+			<br><br>
+			<ol start="4">
+				<li>For interactive entry, <i>Alt+Click</i> with the computer mouse three times along the trace of the feature.  Inputting three points of varying elevations along a scalloped trace of an inclined surface yields the best results.</li>
+				<li>For manual input, enter the latitude, longitude, and elevation (meters) for three points into the manual plot boxes and click Manual Plot.</li>
+				The chosen symbol will be automatically scaled and plotted with annotation within the GE plugin at the 2nd designated point.
+			</ol>
 
-			<br><a id="toggle"><strong>Toggles</strong></a>
-			<br>The toggles will turn on and off the historical imagery and borders/places.  The globe pre-loads the borders and places but historical imagery is off by default.<br>
-
-			<br><a id="kml"><strong>Import KML</strong></a>
-			<br>This button allows you to import a KML file from your local hard drive.  If there are any images in the KML from your hard drive however, they will not work.  Images <strong>MUST BE HOSTED ONLINE</strong> to be seen when using this tool.<br>
-
-			<br><a id="export"><strong>Export Session</strong></a>
-			<br>The export session button allows you to download your work from this tool into a KML file for easy import into Google Earth desktop.<br>
-
-			<br><a id="clear"><strong>Clear All Data</strong></a>
-			<br>Clicking this button will clear <strong>EVERYTHING</strong> you have on the globe, including imported KML or KMZ content.<br>
-
-			<br><a id="manual"><strong>Manual Plot</strong></a>
-			<br>Clicking manual plots takes the points from the boxes marked P1, P2, and P3 from the boxes below the buttons and plots those points on the globe.  The Google Earth altitude values are not used and the calculations will be done based on your input for altitude.<br>
-
-			<br><a id="symbols"><strong>Symbols</strong></a>
-			Symbol listing:<br>
-
-			<br><a id="scale"><strong>Symbol Scale</strong></a>
-			<br>Only 3D circles may be scaled.  All other symbols are 2D and are auto-scaled based on the distance of your points.  If no scale is chosen then the tool will approximate a scale for you.  Otherwise, you can input numbers into x and y to scale the symbols in meters.  Sometimes the elevation of the earth will obscure the 2D symbol.  This can be fixed by exporting to KML and raising the symbol in GE Desktop.<br>
-
-			<br><a id="out"><strong>Outputs</strong></a>
-			<br>At the bottom of the sidebar are the outputs.  These include the elevation, latitude, and longitude of your mouse position and the calculated strike, dip, dip azimuth, and quadrant after three points have been placed.<br>
-
-			<br><a id="math"><strong>Math behind the solver</strong></a>
-			<br>Haversine formula:<br>
-
-			<br><a id="limitations"><strong>Limitations</strong></a>
+			<br><a id="del"><strong>Delaware Water Gap example</strong></a>
 			<br>
+			<ol type="a">
+				<li>Fly to to the Delaware Water Gap:</li>
+				<img width="75%" src="img/del1.jpg"/>
+				<br><br>
+				<li>Pan slightly and adjust the zoom so that traces of Silurian quartzite beds are centered in the view:</li>
+				<img width="75%" src="img/del2.png"/>
+				<br><br>
+				<li>Interactively click on 3 points along the bed trace and the orientated plane and annotation for the dip/dip direction are placed near the 2nd point (P2):</li>
+				<img width="75%" src="img/del3.png"/>
+				<br><br>
+				<li>Interactively tilt the view to see how well the plane fits the inclined surface</li>
+				<img width="75%" src="img/del4.png"/>
+				<br><br>
+				<li>If it isn’t aligned correctly, or it seems as if the interpretation can be improved, simply click the <strong>Undo Last Point</strong> button and re-enter your control point(s). Each of the 3 points chosen for a plane calculation can be undone by repeatedly clicking on the button. However, once point entry for a new plane has begun, the prior calculation cannot be undone during that session.</li>
+				<li>After completing a session, click on either of the export session buttons: <strong>Export KML</strong> or <strong>Export CSV</strong> to save your work.</li>
+			</ol>
 
-			<br><a id="systemreqs"><strong>System requirements</strong></a>
-			<br>
-			The Google Earth plug-in has its own set of system requirements that your computer will need to meet to use this application.  See them at <a href="https://support.google.com/earth/answer/166094?hl=en">https://support.google.com/earth/answer/166094?hl=en</a><br>
-
-			<br><a id="references"><strong>References</strong></a>
-			<br><a href="https://developers.google.com/earth/documentation/">https://developers.google.com/earth/documentation</a><br>
-			<a href="http://www.movable-type.co.uk/scripts/latlong.html">http://www.movable-type.co.uk/scripts/latlong.html</a><br>
-
-			<br><a id="otherglobes"><strong>Moon and Mars</strong></a>
-			<br>These have been disabled for now because their sources are not up to date.<br><strike>
-			<a href="#">Dynamic 3-Point Geological-Plane Solver MOON</a><br>
-			<a href="#">Dynamic 3-Point Geological-Plane Solver MARS</a><br></strike>
 
 
+			<br><a id="other"><strong>Other commands and display options</strong></a>
+			<br>Click on <strong>Toggle Historical</strong> or <strong>Toggle Borders</strong> to toggle historical imagery and borders (and places) on and off. The globe pre-loads the borders and places but historical imagery is off by default.
+<br><br>Clicking <strong>Clear All Data</strong> clears EVERYTHING for a 3-point session, including imported KML or KMZ content, and resets the tool.
+<br><br>Clicking <strong>Manual Plot</strong> uses the point values entered in the text-entry boxes
+P1, P2, and P3  for the 3-point calculation.  Point altitudes must also be entered as this option does not automatically pick elevations based only LAT/LON entry. This option can be used for ordinary 3-point problem solving using point control other than GE, like from subsurface observations. However, the symbol may be partially or wholly generated below ground surface, so export the session and manually raise the symbol(s) above ground using GE symbol properties.
+<br><br>Only 3D circles may be scaled.  All other symbols are 2D and are auto-scaled based on the distance of your points. If no scale is chosen then the tool will approximate a scale for you. Otherwise, you can input numbers into x and y to scale the symbols in meters:<br><img src="img/dimensions.png"/><br>   Sometimes the elevation of the earth will obscure the 2D symbol. This can be fixed by exporting to KML and adjusting the altitude of the resulting symbol object(s) in GE symbol properties.
+At the bottom of the sidebar are the outputs. These include the elevation, latitude, and longitude of your mouse position and the calculated strike, dip, quadrant and dip azimuth after three points have been chosen.<br><img src="img/output.png"/>
+<br>
 
+			<br><a id="kmz"><strong>KMZ and KML input options</strong></a>
+			<br>A KMZ file is the easiest way to bring in custom imagery that may aid in using this tool.
+ <strong>URL Import</strong> provides an option for loading a pre-existing, GE KMZ file, stored on the internet that can aid in interpretation.
 
+For example, below is a URL for KMZ file consisting of a manually-registered, screen capture of a grayscale, hill-shaded image based on LiDAR for a small area in western New Jersey:
+<br><br>URL: <a href="https://dl.dropboxusercontent.com/u/89445333/KML-Zs/NJ_Hunterdon_Plateau_North_LiDAR.kmz">https://dl.dropboxusercontent.com/u/89445333/KML-Zs/NJ_Hunterdon_Plateau_North_LiDAR.kmz</a>
+<br><img src="img/lidar1.png"/><br>Focus on the area toward the bottom inside the red rectangle where 2 out of the 3 points are picked along a scalloped trace of stratigraphic bedding.<br>
+<br><br><img width="75%" src="img/lidar2.jpg"/><br><br><img width="75%" src="img/lidar3.png"/><br>Entry of the 3rd point results in a bed plane dipping NW at 17/308.<br>
+<br>A KML file is imported by clicking on the <strong>Import KML (Local)</strong> button. The file must be resident on your local hard drive. If there are embedded images in the KML, they must be hosted on the Internet in order to be loaded properly.<br>
 
+			<br><a id="limitations"><strong>Limitations and pitfalls</strong></a>
+			<br>This tool is still being tested with respect to its limitations and pitfalls. It relies on GE’s spatial reference system to help determine the orientation of visible geological planes.
+GE’s DEM uses topgraphic elevation control gained from NASA’s Shuttle Radar Topography Mission and tests to be about equal to other DEMs having 30-meter grid cells (Rusli and others, 2014). Therefore, interpretation of geological planes spanning hundreds to thousands of feet yields the best results. Also, we have found that this tool works best on gently to moderately dipping geological planes in areas of low- to moderate-topographic relief. However, its accuracy suffers when attempting an interpretation of steeply-dipping geological planes in areas of high relief.  The best approach is trial and error.  We have found it useful to interpret many planes of similar apparent dip during a single session in a limited area. If similar orientation values result from repeated attempts at slightly different locations, you probably have found a satisfactory solution. But be careful not to use this tool to determine plane dip around the hinge of a folded surface; this can result in a plane dipping polar opposite to the general dip direction. This problem can also arise from using the tool to pick three points on a visible feature while the view is tilted.
+<br>
 
+			<br><a id="reqs"><strong>System requirements</strong></a>
+			<br>The Google Earth plug-in has certain system requirements that your computer will need to meet to use this application. These requirements are detailed here: <a href="https://support.google.com/earth/answer/166094?hl=en">https://support.google.com/earth/answer/166094?hl=en</a><br>
+
+			<br><a id="refs"><strong>References</strong></a>
+			<br>https://developers.google.com/earth/documentation
+<br>http://www.movable-type.co.uk/scripts/latlong.html
+<br>2014, Rusli, N ., Majid M. R., and Din, A. H. M., Google Earth’s derived digital elevation model: A comparative assessment with Aster and SRTM data 8th International Symposium of the Digital Earth (ISDE8) IOP Publishing, IOP Conf. Series: Earth and Environmental Science 18 doi:10.1088/1755-1315/18/1/012065, URL: http://iopscience.iop.org/1755-1315/18/1/012065/pdf/1755-1315_18_1_012065.pdf.
+<br>
+
+<p></p><br>
 			<center><a href="3ppfull.html" class="btn btn-primary">Back to the Solver</a></center>
 		</div>
 

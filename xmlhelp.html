@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+<title>Geologic Web Utilities</title>
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="css/865115.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="wrapper">
+
+        <div id="header">
+        </div>
+
+        <div id="contentliquid">
+            <div id="content">
+                <h2>XML Metadata Generator - Help</h2>
+                The XML Generator can be used to easily create XML documents for the National Digital Catalog for the USGS.
+                <br><br>
+				Any field that is <strong>bold</strong> is required to generate the XML file(s).  You do NOT need to upload a .zip file to use the tool.
+                If you do not upload any .zip you will generate a single XML file.
+
+                <br><br><b>Reasons for using a .zip:</b>
+                <ul>
+                    <li>Many items from the same location</li>
+                    <li>Many items with the same description but different titles</li>
+                    <li>Multiple copies of an item from different angles/viewpoints</li>
+                </ul>
+
+                <br><strong>Assuming you are using a .zip file:</strong>
+                <ol>
+                    <li>Begin by collecting the files you want to generate metadata for.  Select them all, right click and send them to a compressed(zipped) folder as demonstrated below.</li>
+                    <br><img width="75%" src="img/sendto.png"/><br><br>
+                    <li>Click 'Browse...' or 'Choose File' depending on your browser.  It is the first field option on the generator.</li>
+                    <li>Select the .zip file that you just created.  The files inside will be shown with their titles pre-populated to their file names.  You can change the titles at this time.</li>
+                    <li>The next field is the Collection ID.  This can be changed manually or you can use the drop down for predefined IDs and the proper ID will be filled in for you.</li>
+                    <li>The following fields in bold are required to generate the files.  Fill them out according to the NGGDPP PDF guide on metadata.</li>
+                    <li>If you forget what should go in any of the fields, hover over the '?' next to the field name to get a description of it and some example input.</li>
+                    <li>Dataset reference date will be automatically populated to today, but you are free to change it as long as it is in one of the allowed formats</li>
+                </ol>
+
+                <strong>Zip file output:</strong>
+                <br>By choosing to input a .zip file, you will get a .zip back out.  When you click the generate button, you will get a .zip file containing XML files with the same name and -xml appended to the end of the file.
+                  You should inspect the XML files before submitting them to the USGS to ensure they are correct.<br><br>
+
+                <br>If your item does not fit one of these descriptions you probably want to generate a single XML file, in which case do not create any .zip files.  Ignore the first field asking for the .zip file.
+				<br>
+                <br>
+                <strong>If you ARE NOT using a .zip file:</strong>
+                <ol>
+                    <li>Follow the same steps as above but do not select anything for the .zip file field.</li>
+                    <li>You will get a single 'Title' field which must be populated manually.</li>
+                    <li>You will get back a single XML file when you use this option</li>
+                </ol>
+                <p></p>
+            </div>
+       </div>
+
+
+        <div id="leftcolumn">
+        </div>
+
+
+        <div id="footer">
+        </div>
+    </div>
+</body>
+
+<script src='js/nav.js'></script>
+
+</html>
