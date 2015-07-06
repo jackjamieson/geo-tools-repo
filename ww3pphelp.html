@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+<title>Geologic Web Utilities</title>
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="css/865115.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="wrapper">
+
+        <div id="header">
+        </div>
+
+        <div id="contentliquid">
+            <div id="content">
+                <h1>Dynamic 3-Point Geological-Plane Solver -- Help</h1>
+
+				<b>Information about what this tool does, how to use it, the mathematics behind it, some pitfalls and user tips, and a brief accuracy analysis based on a case study.</b>
+				<br><br>By Jack Jamieson and Gregory C. Herman, NJ Geological & Water Survey, Version 2014 (Beta)</center>
+			<p>
+				<strong>Topics:</strong></p>
+			<ul>
+				<li><a href="#what">What is the purpose of this tool?</a></li>
+				<li><a href="#how">How does it work?</a></li>
+				<li><a href="#algo">Computer algorithm and program variables (MS Excel version)</a></li>
+				<li><a href="#use">How do I use this tool?</a></li>
+				<li><a href="#del">Delaware Water Gap example</a></li>
+				<li><a href="#other">Other commands and display options</a></li>
+				<li><a href="#kmz">KMZ and KML input options</a></li>
+				<li><a href="#limitations">Limitations and pitfalls</a></li>
+				<li><a href="#reqs">System requirements</a></li>
+				<li><a href="#refs">References</a></li>
+
+
+
+			</ul>
+
+			<a id="what"><strong>What is the purpose of this tool?</strong></a>
+			<br>This tool uses NASA World Wind (WW) for calculating the three-dimensional (3D) orientation of inclined (dipping) geological planes that intersect the Earth’s surface and are visible, or not masked by infrastructure, foliage, or surficial cover. Using this tool, a user interactively picks three points on the trace of a bed form, or other visually identifiable geological plane, and the tool extracts the 3D coordinates from the WW spatial reference frame, computes the dip angle and dip direction of the plane based on the input points, then places either a two-dimensional (2D) map symbol or flat, 3D disks at the second point of input along with dip (0-90) and dip azimuth (0-360) notation.  The scale of the symbol is determined automatically by the spacing of the input points. The user can generate multiple symbols during a single session that can be exported in a KML/KMZ format. Details of the incorporated mathematics are covered below.<br>
+
+			<br><a id="how"><strong>How does it work?</strong></a>
+			<br>This tool is a custom Java software application developed at the NJ Geological & Water Survey that uses the NASA World Wind Globe desktop platform to extract 3D spatial coordinates picked along a visible trace of the edge of a geological plane in order to calculate and display its 3D orientation.  Distances and bearings between three points of latitude and longitude are derived using an adaptation of an 19th century navigational aid called the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine Formula</a> that uses three surface points on a sphere, the spherical law of cosines, and the radius of the Earth.  Three input points in a plane also define two vectors lying in that plane. Cross-product, algebraic manipulation of these vector’s directional components yields a lower-hemisphere solution of the plunge angle and trend (azimuth) of a vector normal to that geometric plane. The trend of the vector normal relates to the plane dip azimuth, and the plane dip compliments the plunge angle of the vector normal. </a><br>
+
+			<br><a id="algo"><strong>Computer algorithm and program variables (MS Excel version)</strong></a>
+			<br>The figure below is a screen capture of a MS Excel Worksheet detailing the mathematics and computer algorithms (in an MS Excel format). <br>
+			<br><img width="75%" src="./img/3ppexcel.png"/><br>
+
+			<br><a id="use"><strong>How do I use this tool?</strong></a>
+			<ol>
+				<li>To begin a 3-point session enter latitude and longitude values or pan and zoom to the area of interest.</li>
+				<img src="img/wwflyto.png"/><br>
+				<li><u>Zoom in and adjust the view so that the area of interest is seen from a bird’s-eye view; so that the display isn’t tilted.</u></li>
+				<li>Pick a <i>Symbol to Plot</i> from the drop-down menu:  (default in a 3D solid-white disk)</li>
+			<ol>
+				<br>
+			The current version of the program provides options for many different, black or white, 2D map symbols including:
+			<br><img src="img/2dsymbols.png"/>
+			<br><br>or different types of 3D colored disks:
+			<br><img src="img/3dsymbols.png"/>
+			<br><br>
+			<ol start="4">
+				<li>For interactive entry, click <i>New</i> and then click three points to use in the calculation.  Inputting three points of varying elevations along a scalloped trace of an inclined surface yields the best results.</li>
+								The chosen symbol will be automatically scaled and plotted with annotation within the WW Globe panel at the 2nd designated point.
+			</ol>
+
+			<br><a id="del"><strong>Delaware Water Gap example</strong></a>
+			<br>
+			<ol type="a">
+				<li>Fly to to the Delaware Water Gap:</li>
+				<img width="75%" src="img/wwwatergap1.png"/>
+				<br><br>
+				<li>Pan slightly and adjust the zoom so that traces of Silurian quartzite beds are centered in the view:</li>
+				<img width="75%" src="img/wwwatergap2.png"/>
+				<br><br>
+				<li>Interactively click on 3 points along the bed trace and the orientated plane and annotation for the dip/dip direction are placed near the 2nd point (P2):</li>
+				<img width="75%" src="img/wwwatergap3.png"/>
+				<br><br>
+				<li>Interactively tilt the view to see how well the plane fits the inclined surface</li>
+				<img width="75%" src="img/wwwatergap4.png"/>
+				<br><br>
+				<li>If it isn’t aligned correctly, or it seems as if the interpretation can be improved, simply click the <strong>Undo Last Point</strong> button and re-enter your control point(s). The last two points for a plane calculation can be undone by repeatedly clicking on the button. However, once point entry for a new plane has begun, the prior calculation cannot be undone during that session.</li>
+				<li>After completing a session, click on the export session buttons: <strong>Export KML</strong> to save your work.</li>
+			</ol>
+
+
+
+			<br><a id="other"><strong>Other commands and display options</strong></a>
+			<br>Click on the check boxes under the Layers panel to toggle various WW layers from topo-maps to the World at Night. The globe pre-loads the borders and places but historical imagery is off by default.
+<br><br>Clicking <strong>Clear All Data</strong> clears EVERYTHING for a 3-point session, including imported KML or KMZ content, and resets the tool.
+
+<br><br>All  symbols are auto-scaled based on the distance of your points.<br><br>   Sometimes the elevation of the earth will obscure the 2D symbol. This can be fixed by exporting to KML and adjusting the altitude of the resulting symbol object(s) in WW symbol properties.
+At the bottom of the sidebar are the outputs. These include the elevation, latitude, and longitude of your mouse position and the calculated strike, dip, quadrant and dip azimuth after three points have been chosen.<br><img src="img/wwoutput.png"/>
+<br>
+
+			<br><a id="kmz"><strong>KMZ and KML input options</strong></a>
+			<br>A KMZ file is the easiest way to bring in custom imagery that may aid in using this tool.
+ <strong>File > Open File / Open URL</strong> provides an option for loading a pre-existing, GE KMZ file, stored on the internet that can aid in interpretation.
+
+For example, below is a URL for KMZ file consisting of a manually-registered, screen capture of a grayscale, hill-shaded image based on LiDAR for a small area in western New Jersey:
+<br><br>URL: <a href="https://dl.dropboxusercontent.com/u/89445333/KML-Zs/NJ_Hunterdon_Plateau_North_LiDAR.kmz">https://dl.dropboxusercontent.com/u/89445333/KML-Zs/NJ_Hunterdon_Plateau_North_LiDAR.kmz</a>
+<br><img src="img/lidar1.png"/><br>Focus on the area toward the bottom inside the red rectangle where 2 out of the 3 points are picked along a scalloped trace of stratigraphic bedding.<br>
+<br><br><img width="75%" src="img/lidar2.jpg"/><br><br><img width="75%" src="img/lidar3.png"/><br>Entry of the 3rd point results in a bed plane dipping NW at 17/308.<br>
+<br>A KML file is imported by clicking on the <strong>Import KML (Local)</strong> button. The file must be resident on your local hard drive. If there are embedded images in the KML, they must be hosted on the Internet in order to be loaded properly.<br>
+
+			<br><a id="limitations"><strong>Limitations and pitfalls</strong></a>
+			<br>This tool is still being tested with respect to its limitations and pitfalls. It relies on WW’s spatial reference system to help determine the orientation of visible geological planes.
+WW’s DEM uses topgraphic elevation control gained from NASA’s Shuttle Radar Topography Mission and tests to be about equal to other DEMs having 30-meter grid cells (Rusli and others, 2014). Therefore, interpretation of geological planes spanning hundreds to thousands of feet yields the best results. Also, we have found that this tool works best on gently to moderately dipping geological planes in areas of low- to moderate-topographic relief. However, its accuracy suffers when attempting an interpretation of steeply-dipping geological planes in areas of high relief.  The best approach is trial and error.  We have found it useful to interpret many planes of similar apparent dip during a single session in a limited area. If similar orientation values result from repeated attempts at slightly different locations, you probably have found a satisfactory solution. But be careful not to use this tool to determine plane dip around the hinge of a folded surface; this can result in a plane dipping polar opposite to the general dip direction. This problem can also arise from using the tool to pick three points on a visible feature while the view is tilted.
+<br>
+
+			<br><a id="reqs"><strong>System requirements</strong></a>
+			<br>From the NASA World Wind release page: Requirements: a 3D video card with updated drivers is necessary. World Wind has bseen tested on Nvidia, ATI/AMD, and Intel platforms using Windows, MacOS 10.9, and Fedora Core 6. For more information click here: <a href="http://worldwind.arc.nasa.gov/java/">http://worldwind.arc.nasa.gov/java/</a><br>
+
+			<br><a id="refs"><strong>References</strong></a>
+			<br>https://developers.google.com/earth/documentation
+<br>http://www.movable-type.co.uk/scripts/latlong.html
+<br>2014, Rusli, N ., Majid M. R., and Din, A. H. M., Google Earth’s derived digital elevation model: A comparative assessment with Aster and SRTM data 8th International Symposium of the Digital Earth (ISDE8) IOP Publishing, IOP Conf. Series: Earth and Environmental Science 18 doi:10.1088/1755-1315/18/1/012065, URL: http://iopscience.iop.org/1755-1315/18/1/012065/pdf/1755-1315_18_1_012065.pdf.
+<br>
+
+            </div>
+       </div>
+
+
+        <div id="leftcolumn">
+        </div>
+
+
+        <div id="footer">
+        </div>
+    </div>
+</body>
+
+<script src='js/nav.js'></script>
+
+</html>
