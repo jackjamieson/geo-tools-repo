@@ -7,6 +7,7 @@ var zipFile; // the generated zip
 
 var isUsingZip = false;
 
+// gets the current day and populates date fields
 function fillToday(){
 
     var today = new Date();
@@ -33,6 +34,7 @@ fillToday();//fill the date field with today's date
 // reading the zip data
 (function () {
     if (!window.FileReader || !window.ArrayBuffer) {
+        // if the browser supports file reader
         $("#error_block").removeClass("hidden").addClass("show");
         return;
     }
@@ -93,6 +95,7 @@ fillToday();//fill the date field with today's date
                         });
 
                         addTitleFields(fileList.length, fileList);
+                        addLatLongFields(fileList.length, fileList);
                         // end of the magic !
 
                     } catch(e) {
@@ -134,9 +137,38 @@ function addTitleFields(count, fileList){
 
         var tempFileName = fileList[i].substring(0, fileList[i].lastIndexOf("."));
 
-        newTitles.innerHTML += "<div style='margin-left:15px'><p><tr><td><b>Title (" + fileList[i] + "): </b></td><td><input type='text' id=" + "\"" + fileList[i] + "\"" + "size='20' value=\"" + tempFileName + "\"></td></tr></p></div>";
+        newTitles.innerHTML += "<div style='margin-left:15px'><p><tr><td><b>Title (" + fileList[i] + "): </b></td><td><input type='text' id=" + "\"" + fileList[i] + "\"" + "size='50' value=\"" + tempFileName + "\"></td></tr></p></div>";
 
     }
+}
+
+function addLatLongFields(count, fileList){
+
+
+    // the divs containing the long and lat inputs fields
+    var latBlock = document.getElementById("latBox");
+    var longBlock = document.getElementById("longBox");
+
+    // empty div to put the new boxes in
+    var newLats = document.getElementById("new_latslons");
+
+    latBlock.innerHTML = "";
+    longBlock.innerHTML = "";
+
+    newLats.innerHTML = "";
+
+
+    for(var i = 0; i < count; i++){
+
+        var tempFileName = fileList[i].substring(0, fileList[i].lastIndexOf("."));
+
+        newLats.innerHTML += "<div><p><tr><td><b>Longitude: (" + fileList[i] + "): </b></td><td><input type='text' id=" + "\"" + fileList[i] + "-long" + "\"" + "size='30'></td></tr></p></div>";
+        newLats.innerHTML += "<div><p><tr><td><b>Latitude: (" + fileList[i] + "): </b></td><td><input type='text' id=" + "\"" + fileList[i] + "-lat" + "\"" + "size='30' ></td></tr></p></div>";
+        newLats.innerHTML += "<br>";
+
+    }
+
+
 }
 
 // handles the xml formatting of the input
@@ -195,7 +227,11 @@ $('#xml').click(function() {
             var header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
             header += "\n<sample>\n";
             header += element("collectionID", $('#collectionid').val());
-            header += element("title", $('#title').val());
+
+            //special characters need to be removed, so far the & is causing a problem
+            var specTitle = $('#title').val().replace(/&/g, 'and');
+
+            header += element("title", specTitle);
 
             // alternate title
             header += element("alternateTitle", $('#alttitle').val(), "title");
@@ -288,12 +324,24 @@ $('#xml').click(function() {
                 isEmpty = true;
                 z = fileList.length;
             }
+
+            var checkLong = document.getElementById(fileList[z] + "-long").value;
+            var checkLat = document.getElementById(fileList[z] + "-lat").value;
+
+
+            if(checkLong.length == 0 || checkLat.length == 0)
+            {
+                isEmpty = true;
+                z = fileList.length;
+            }
             else isEmpty = false;// The titles have all been filled out
 
         }
 
 
-        if(isEmpty == true || abstract.length == 0 || boxes.length == 0 || supp.length == 0 || long.length == 0 || lat.length == 0 || date.length == 0)
+
+
+        if(isEmpty == true || abstract.length == 0 || boxes.length == 0 || supp.length == 0 || date.length == 0)
         {
             alert("All required fields must be filled in.  Bolded items are required.");
 
@@ -305,7 +353,12 @@ $('#xml').click(function() {
                 var header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
                 header += "\n<sample>\n";
                 header += element("collectionID", $('#collectionid').val());
-                header += element("title", document.getElementById(fileList[f]).value);
+
+                var specTitleZip = document.getElementById(fileList[f]).value.replace(/&/g, 'and');
+
+                header += element("title", specTitleZip);
+
+                //header += element("title", document.getElementById(fileList[f]).value);
 
                 // alternate title
                 header += element("alternateTitle", $('#alttitle').val(), "title");
@@ -328,7 +381,11 @@ $('#xml').click(function() {
 
                 //header += element("dataType", $( "#sel option:selected" ).text());
                 header += element("supplementalInformation", $('#supplementalInformation').val() , "info");
-                header += element("coordinates", $('#longitude').val() + ", " + $('#latitude').val());
+
+                var specLat = document.getElementById(fileList[f] + "-long").value;
+                var specLong = document.getElementById(fileList[f] + "-lat").value;
+
+                header += element("coordinates", specLat + ", " + specLong);
 
                 // alternate geometry
                 header += element("alternateGeometry", $('#altgeometry').val());

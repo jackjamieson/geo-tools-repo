@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+	<title>Geologic Web Utilities</title>
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="css/865115.css" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+	<div id="wrapper">
+
+		<div id="header">
+		</div>
+
+		<div id="contentliquid">
+			<div id="content">
+				<h2>Lineation Calculator</h2>
+				<a href="dl/rake_plunge_calculator.xls" class="btn btn-default">Example Input</a>
+                <br><br>
+				Take from an Excel spreadsheet and calculate rake and plunge. <br>
+				Cut &amp; Paste from a MS Excel Worksheet using the format found in the example input above.  Do not include the headers.</p>
+
+
+						<table style="font-weight:bold; font-size:9pt; width:820px">
+							<tr>
+								<td>Strike</td>
+								<td>Dip</td>
+								<td>Rake</td>
+								<td>Trend</td>
+								<td>Plunge</td>
+
+							</tr>
+						</table>
+
+
+						<textarea name="textarea" id="excel" rows="20" cols="40"></textarea>
+						<textarea name="output" style="margin-left:10px;" id="out" rows="20" cols="10"></textarea>
+						<textarea name="outputTrend" style="margin-left:35px;" id="outT" rows="20" cols="10"></textarea>
+
+
+						<p></p><a href="#" class="btn btn-primary" id="calc" >Calculate</a>
+
+<p></p>
+					</div>
+				</div>
+
+
+				<div id="leftcolumn">
+				</div>
+
+
+				<div id="footer">
+				</div>
+			</div>
+		</body>
+
+		<script src='js/nav.js'></script>
+		<script src='js/jquery-1.11.1.min.js'></script>
+		<script src='js/lincalc.js'></script>
+
+		</html>

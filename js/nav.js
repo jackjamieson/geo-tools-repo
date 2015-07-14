@@ -1,11 +1,15 @@
 
 var curPage = (window.location.href.substring(window.location.href.lastIndexOf("/")+1, window.location.href.length));
 
-var isActive,isActive2,isActive3,isActive4,isActive5,isActive6;
+var isActive,isActive2,isActive3,isActive4,isActive5,isActive6,isActive7;
 
 if(curPage === 'index.html')
 {
 	isActive = "active";
+}
+if(curPage === 'calculators.html' || curPage === 'lincalc.html' || curPage === 'appdipcalc.html')
+{
+	isActive7 = "active";
 }
 if(curPage === 'conversion.html' || curPage === 'fdmconvert.html' || curPage === 'atlas.html' || curPage === 'dmsdeg.html' || curPage === 'help.html' || curPage === 'fdmhelp.html'){
 	isActive2 = "active";
@@ -28,6 +32,7 @@ divNav.innerHTML =
 '<ul class="nav nav-pills nav-stacked">' +
 	'<li class="' + isActive + '"><a href="index.html">Home</a></li>' +
 	'<li class="' + isActive2 + '"><a href="conversion.html">Conversion Tools</a></li>' +
+	'<li class="' + isActive7 + '"><a href="calculators.html">Calculators</a></li>' +
 	'<li class="' + isActive3 + '"><a href="3ppops.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
 	'<li class="' + isActive4 + '"><a href="formatters.html">Excel to KML Formatters</a></li>' +
 	'<li class="' + isActive5 + '"><a href="xmlgen.html">XML Metadata Generator</a></li>' +
