@@ -21,18 +21,39 @@ function readInput(){
     for(var i = 0;i < lines.length;i++){
         lineArr.length = 0;
 
-        var singleLine = lines[i].split('\t');
-        for(var m = 0; m < singleLine.length; m++)
-        {
-            lineArr.push(singleLine[m]);
+        if(lines[i].indexOf(",") > -1){
+
+            var singleLineComma = lines[i].split(',');
+
+            for(var m = 0; m < singleLineComma.length; m++)
+            {
+                lineArr.push(singleLineComma[m]);
+
+            }
+
+            if(lineArr.length > 1)
+            {
+
+                calculateRakePlunge(lineArr[0], lineArr[1], lineArr[2], lineArr[3]);
+
+            }
 
         }
+        else {
 
-        if(lineArr.length > 1)
-        {
+            var singleLine = lines[i].split('\t');
+            for(var m = 0; m < singleLine.length; m++)
+            {
+                lineArr.push(singleLine[m]);
 
-            calculateRakePlunge(lineArr[0], lineArr[1], lineArr[2], lineArr[3]);
+            }
 
+            if(lineArr.length > 1)
+            {
+
+                calculateRakePlunge(lineArr[0], lineArr[1], lineArr[2], lineArr[3]);
+
+            }
         }
     }
 

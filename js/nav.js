@@ -1,7 +1,7 @@
 
 var curPage = (window.location.href.substring(window.location.href.lastIndexOf("/")+1, window.location.href.length));
 
-var isActive,isActive2,isActive3,isActive4,isActive5,isActive6,isActive7;
+var isActive,isActive2,isActive3,isActive4,isActive5,isActive6,isActive7,isActive8;
 
 if(curPage === 'index.html')
 {
@@ -26,6 +26,9 @@ if(curPage === 'xmlgen.html' || curPage === 'xmlhelp.html'){
 if(curPage === 'kmlfmt.html' ||  curPage === 'kmlfmthelp.html'){
 	isActive6 = "active";
 }
+if(curPage === 'postprocess.html'){
+	isActive8 = "active";
+}
 
 var divNav = document.getElementById('leftcolumn');
 divNav.innerHTML =
@@ -36,7 +39,9 @@ divNav.innerHTML =
 	'<li class="' + isActive3 + '"><a href="3ppops.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
 	'<li class="' + isActive4 + '"><a href="formatters.html">Excel to KML Formatters</a></li>' +
 	'<li class="' + isActive5 + '"><a href="xmlgen.html">XML Metadata Generator</a></li>' +
-	'<li class="' + isActive6 + '"><a href="kmlfmt.html">USGS KML Formatter</a></li>'
+	'<li class="' + isActive6 + '"><a href="kmlfmt.html">USGS KML Formatter</a></li>' +
+	'<li class="' + isActive8 + '"><a href="postprocess.html">KML Placemark Digitizer</a></li>' +
+
 '</ul>';
 
 var header = document.getElementById('header');
