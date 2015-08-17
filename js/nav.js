@@ -48,7 +48,7 @@ var header = document.getElementById('header');
 header.innerHTML = 	'<p>Geologic Web Utilities</p>';
 
  var footer = document.getElementById('footer');
- footer.innerHTML = 	'<p>Developed by Jack Jamieson and Greg Herman.  No rights reserved.</p>';// +
+ footer.innerHTML = 	'<p>Developed by <a href="http://jackjamieson.me">Jack Jamieson</a> and <a href="http://impacttectonics.org/">Greg Herman</a>.  No rights reserved.</p>';// +
 
 //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
