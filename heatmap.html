@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <meta charset="utf-8">
+    <title>Heatmap Generator</title>
+    <style>
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+*{
+ margin:0;
+}
+html, body {
+ height:100%;
+ font-family: 'Open Sans', sans-serif;
+}
+.overlay {
+ position:absolute;
+ display:none;
+ top:0;
+ right:0;
+ bottom:0;
+ left:0;
+ background:rgba(0, 0, 0, 0.8);
+ z-index:9999;
+}
+.close {
+ position:absolute;
+ top:-40px;
+ right:-5px;
+ z-index:99;
+ width:25px;
+ height:25px;
+ cursor:pointer;
+ color: #fff;
+ display: inline-block;
+}
+.popup {
+ position:absolute;
+ width:50%;
+ height:55%;
+ top:25%;
+ left:25%;
+ text-align:center;
+ background:white;
+ box-shadow: 0px 0px 10px 0px black;
+}
+p {
+    font-size:small;
+    margin-top:10px;
+}
+.popup h2 {
+ font-size:15px;
+ height:50px;
+ line-height:50px;
+ color:#fff;
+ background:rgb(24, 108, 209);
+}
+.button {
+ width:50px;
+ height:50px;
+ color:#fff;
+ font-weight:bolder;
+ background:silver;
+}
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #panel {
+          border-radius: 5px;
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 120px;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="loadData()">Load Data</button>
+
+    </div>
+    <div id="map"></div>
+<div class='overlay'>
+<div class='popup'>
+    <div class='close'>&#10006;</div>
+
+     <h2>Enter Data</h2>
+     <p>Copy paste the CSV information from Excel <u>without headers</u>, then click Generate Heatmap.</p>
+<br>
+<textarea name="textarea" id="data" rows="20" cols="70"></textarea>
+<br>
+<br><a href="#" id="generate"><button>Generate Heatmap</button></a>
+</div>
+    <script>
+
+var map, heatmap;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 5,
+    center: {lat: 40, lng: -74},
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  });
+
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: getPoints(),
+    map: map
+  });
+}
+
+function toggleHeatmap() {
+  heatmap.setMap(heatmap.getMap() ? null : map);
+}
+
+function loadData() {
+
+    $('.overlay').show();
+
+}
+
+function changeGradient() {
+  var gradient = [
+    'rgba(0, 46, 204, 64)',
+    'rgba(0, 255, 255, 153)',
+    'rgba(0, 255, 163, 67)',
+    'rgba(0, 255, 65, 54)',
+    'rgba(0, 133, 20, 75)'
+
+  ]
+  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+
+$('.close').click(function () {
+    $('.overlay').hide();
+})
+
+// Heatmap data: 500 Points
+function getPoints() {
+  return [
+  ];
+}
+
+var lats = [];
+var lons = [];
+var pts = [];
+
+//read the input from the box
+function readInput()
+{
+    pointCount = 0;
+    var lines = $('#data').val();
+    var lineArr = [];
+
+    lines = lines.split('\n');
+    for(var i = 0;i < lines.length;i++){
+        lineArr.length = 0;
+
+        var singleLine = lines[i].split('\t');
+        for(var m = 0; m < singleLine.length; m++)
+        {
+
+            lineArr.push(singleLine[m]);
+
+        }
+
+        if(lineArr.length > 1)
+        {
+            generateKMLPlacemarks(lineArr);
+
+        }
+    }
+
+    //redraw the map
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: {lat: Number(lons[0]), lng: Number(lats[0])},
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      });
+
+      heatmap = new google.maps.visualization.HeatmapLayer({
+        data: pts,
+        map: map
+      });
+
+
+
+}
+
+
+function generateKMLPlacemarks(lineArr)
+{
+    var weight = 0;
+    if(lineArr[8].indexOf("GR") > 0){
+        weight = 0;
+    }
+    if(lineArr[8].indexOf("LY") > 0){
+        weight = 1;
+    }
+    if(lineArr[8].indexOf("DY") > 0){
+        weight = 2;
+    }
+    if(lineArr[8].indexOf("LO") > 0){
+        weight = 4;
+    }
+    if(lineArr[8].indexOf("DO") > 0){
+        weight = 6;
+    }
+    if(lineArr[8].indexOf("RE") > 0){
+        weight = 8;
+    }
+    if(lineArr[8].indexOf("VI") > 0){
+        weight = 10;
+    }
+
+	lats.push(lineArr[10]);
+	lons.push(lineArr[9]);
+
+    if(weight > 0)
+        pts.push({location: new google.maps.LatLng(lineArr[9], lineArr[10]), weight: weight});
+}
+
+
+
+
+//click the generate button
+$('#generate').click(function() {
+    readInput();
+    $('.overlay').hide();
+
+});
+
+
+   </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=visualization&callback=initMap">
+    </script>
+
+  </body>
+</html>
