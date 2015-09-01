@@ -53,115 +53,12 @@ if (typeof Number.prototype.toDegrees == 'undefined') {
 }
 
 //calculate the dae file to use
-/*
-function findColor(colorNum)
-{
-
-    //var notACircle = findSymbol(
-    switch(colorNum)
-    {
-        case 0:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/5-m-Wcircle.dae";
-        case 1:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/5-m-BLcircle.dae";
-        case 2:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/5-m-Rcircle.dae";
-        case 3:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/5-m-Gcircle.dae";
-        case 4:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/5-m-Bcircle.dae";
-        case 5:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/5-m-LBcircle.dae";
-        case 6:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/5-m-Pcircle.dae";
-        default:
-            return "";
-
-    }
-
-}
-*/
-
-//calculate the dae file to use
 function findSymbol(symbolNum)
 {
-    //This was for the previous version, keeping it just in case.
-    /*
-    switch(symbolNum)
-    {
-        case 0:
-            return "bed.dae";
-        case 1:
-            return "cleavage.dae";
-        case 2:
-            return "layer.dae";
-        case 3:
-            return "joint.dae";
-        case 4:
-            return "arrow.dae";
-        case 5:
-            return "slip.dae";
-        case 6:
-            return "circle";
-        case 10:
-            return "bed.dae";
-        case 11:
-            return "cleavage.dae";
-        case 12:
-            return "layer.dae";
-        case 13:
-            return "joint.dae";
-        case 14:
-            return "arrow.dae";
-        case 15:
-            return "slip.dae";
-        default:
-            return "";
-
-    }
-    */
 
 
 
 }
-
-/*
-function findNotCircleSymbol(symbolNum)
-{
-
-    switch(symbolNum)
-    {
-        case 0:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/bed.dae";
-        case 1:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/cleavage.dae";
-        case 2:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/layer.dae";
-        case 3:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/joint.dae";
-        case 4:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/arrow.dae";
-        case 5:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/slip.dae";
-        case 10:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/bed-white.dae";
-        case 11:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/cleavage-white.dae";
-        case 12:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/layer-white.dae";
-        case 13:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/joint-white.dae";
-        case 14:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/arrow-white.dae";
-        case 15:
-            return "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/slip-white.dae";
-        default:
-            return "";
-
-    }
-
-}
-*/
 
 //The new file finding function, previous three were for a different version
 function findPremadeSymbol(name) {
@@ -295,23 +192,10 @@ function readInput()
 function calcInput(lineArray)
 {
     var file;
-    
+
     if(findPremadeSymbol(lineArray[9]))
         file = "https://dl.dropboxusercontent.com/u/89445333/GEsymbols/" + lineArray[9];
     else file = lineArray[9];
-
-    //var symbol = findSymbol((lineArray[9]));
-
-    //if the symbol is not a circle check to see which 2d symbol it should be
-    /*if(symbol != "circle")
-    {
-        file = findNotCircleSymbol(Number(lineArray[9]));
-    }
-    else{
-
-        file = findColor(Number(lineArray[11]));
-
-    }*/
 
     var del_x = findDelX(lineArray);
     var del_y = findDelY(lineArray);
@@ -362,34 +246,70 @@ function generateKMLModel(lineArray, calculated)
         orient = 0;
     else orient = dipF;
 
-    kmlModel += ''
-    + '\n<Placemark>'
-    + '\n<name>' +	lineArray[10] + " " + dipF + "/" + dipAzF +	'</name>'
-    + '\n<LookAt>'
-    + '\n<longitude>'	+ lineArray[1] + '</longitude>'
-    + '\n<latitude>'	+ lineArray[2] + '</latitude>'
-    + '\n<altitude>0</altitude>'
-    + '\n<heading>0</heading>'
-    + '\n<tilt>0</tilt>'
-    + '\n<range>7</range></LookAt>'
-    + '\n<Model id="	model_1	">'
-    + '\n<altitudeMode>relativeToGround</altitudeMode>'
-    + '\n<Location>'
-    + '\n<longitude>' + lineArray[1] + '</longitude>'
-    + '\n<latitude>'	+ lineArray[2]+	'</latitude>'
-    + '\n<altitude>' + lineArray[3]+	'</altitude></Location>'
-    + '\n<Orientation>'
-    + '\n<heading>' +	dipAzF	+'</heading>'
-    + '\n<tilt>' +	orient	+'</tilt>'
-    + '\n<roll>0</roll></Orientation>'
-    + '\n<Scale>'
-    + '\n<x>' +lineArray[6] + '</x>'
-    + '\n<y>'	+ lineArray[7] +	'</y>'
-    + '\n<z>'	+ lineArray[8] +	'</z></Scale>'
-    + '\n<Link>'
-    + '\n<href>' + calculated.file + '</href>'
-    + '\n</Link>'
-    + '</Model></Placemark>';
+    var atLeastOneIsChecked = $('input[name="time"]:checked').length > 0;
+    if(atLeastOneIsChecked){
+        kmlModel += ''
+        + '\n<Placemark>'
+        + '\n<gx:TimeStamp><when>' + lineArray[12] + 'T' + lineArray[13] + 'Z</when></gx:TimeStamp>'
+        + '\n<name>' +	lineArray[10] + " " + dipF + "/" + dipAzF +	'</name>'
+        + '\n<LookAt>'
+        + '\n<longitude>'	+ lineArray[1] + '</longitude>'
+        + '\n<latitude>'	+ lineArray[2] + '</latitude>'
+        + '\n<altitude>0</altitude>'
+        + '\n<heading>0</heading>'
+        + '\n<tilt>0</tilt>'
+        + '\n<range>7</range></LookAt>'
+        + '\n<Model id="	model_1	">'
+        + '\n<altitudeMode>relativeToGround</altitudeMode>'
+        + '\n<Location>'
+        + '\n<longitude>' + lineArray[1] + '</longitude>'
+        + '\n<latitude>'	+ lineArray[2]+	'</latitude>'
+        + '\n<altitude>' + lineArray[3]+	'</altitude></Location>'
+        + '\n<Orientation>'
+        + '\n<heading>' +	dipAzF	+'</heading>'
+        + '\n<tilt>' +	orient	+'</tilt>'
+        + '\n<roll>0</roll></Orientation>'
+        + '\n<Scale>'
+        + '\n<x>' +lineArray[6] + '</x>'
+        + '\n<y>'	+ lineArray[7] +	'</y>'
+        + '\n<z>'	+ lineArray[8] +	'</z></Scale>'
+        + '\n<Link>'
+        + '\n<href>' + calculated.file + '</href>'
+        + '\n</Link>'
+        + '</Model></Placemark>';
+    }
+    else {
+        kmlModel += ''
+        + '\n<Placemark>'
+        + '\n<name>' +	lineArray[10] + " " + dipF + "/" + dipAzF +	'</name>'
+        + '\n<LookAt>'
+        + '\n<longitude>'	+ lineArray[1] + '</longitude>'
+        + '\n<latitude>'	+ lineArray[2] + '</latitude>'
+        + '\n<altitude>0</altitude>'
+        + '\n<heading>0</heading>'
+        + '\n<tilt>0</tilt>'
+        + '\n<range>7</range></LookAt>'
+        + '\n<Model id="	model_1	">'
+        + '\n<altitudeMode>relativeToGround</altitudeMode>'
+        + '\n<Location>'
+        + '\n<longitude>' + lineArray[1] + '</longitude>'
+        + '\n<latitude>'	+ lineArray[2]+	'</latitude>'
+        + '\n<altitude>' + lineArray[3]+	'</altitude></Location>'
+        + '\n<Orientation>'
+        + '\n<heading>' +	dipAzF	+'</heading>'
+        + '\n<tilt>' +	orient	+'</tilt>'
+        + '\n<roll>0</roll></Orientation>'
+        + '\n<Scale>'
+        + '\n<x>' +lineArray[6] + '</x>'
+        + '\n<y>'	+ lineArray[7] +	'</y>'
+        + '\n<z>'	+ lineArray[8] +	'</z></Scale>'
+        + '\n<Link>'
+        + '\n<href>' + calculated.file + '</href>'
+        + '\n</Link>'
+        + '</Model></Placemark>';
+    }
+
+
 
 
 }
@@ -412,14 +332,30 @@ function generateKMLPlacemarks(lineArray, calculated)
         dipF = "00" + dipF.toString();
     }
 
-    kmlPlacemark += ''
-    + '<Placemark>'
-    + '<name>' + dipF + "/" + dipAzF + '</name>'
-    + '<styleUrl>#sn_noicon</styleUrl>'
-    + '<Point>'
-    + '<altitudeMode>relativeToGround</altitudeMode>'
-    + '<coordinates>' + calculated.label_lon + "," + calculated.label_lat + "," + lineArray[3] + '</coordinates></Point>'
-    + '</Placemark>';
+    var atLeastOneIsChecked = $('input[name="time"]:checked').length > 0;
+
+    if(atLeastOneIsChecked){
+        kmlPlacemark += ''
+        + '<Placemark>'
+        + '<gx:TimeStamp><when>' + lineArray[12] + 'T' + lineArray[13] + 'Z</when></gx:TimeStamp>'
+        + '<name>' + dipF + "/" + dipAzF + '</name>'
+        + '<styleUrl>#sn_noicon</styleUrl>'
+        + '<Point>'
+        + '<altitudeMode>relativeToGround</altitudeMode>'
+        + '<coordinates>' + calculated.label_lon + "," + calculated.label_lat + "," + lineArray[3] + '</coordinates></Point>'
+        + '</Placemark>';
+    }
+    else {
+        kmlPlacemark += ''
+        + '<Placemark>'
+        + '<name>' + dipF + "/" + dipAzF + '</name>'
+        + '<styleUrl>#sn_noicon</styleUrl>'
+        + '<Point>'
+        + '<altitudeMode>relativeToGround</altitudeMode>'
+        + '<coordinates>' + calculated.label_lon + "," + calculated.label_lat + "," + lineArray[3] + '</coordinates></Point>'
+        + '</Placemark>';
+    }
+
 
 
 }
