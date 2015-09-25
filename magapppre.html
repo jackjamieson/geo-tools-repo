@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+<title>Geologic Web Utilities</title>
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="css/865115.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script>
+jQuery(document).ready(function() {
+    var offset = 220;
+    var duration = 500;
+    jQuery(window).scroll(function() {
+        if (jQuery(this).scrollTop() > offset) {
+            jQuery('.back-to-top').fadeIn(duration);
+        } else {
+            jQuery('.back-to-top').fadeOut(duration);
+        }
+    });
+
+    jQuery('.back-to-top').click(function(event) {
+        event.preventDefault();
+        jQuery('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    })
+});
+</script>
+<style>
+.alink{
+    color:inherit;
+}
+.alink:hover{
+    text-decoration: none;
+    color:inherit;
+}
+img {
+    padding:10px;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2em;
+    right: 0px;
+    text-decoration: none;
+    color: #000000;
+    background-color: rgba(235, 235, 235, 0.80);
+    font-size: 12px;
+    padding: 2em;
+    display: none;
+}
+
+.back-to-top:hover {
+    background-color: rgba(135, 135, 135, 0.50);
+}
+
+
+
+</style>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="wrapper">
+
+        <div id="header">
+        </div>
+
+        <div id="contentliquid">
+            <div id="content">
+                <h2>Magnetometer Android App</h2>
+                This app is in pre-release.  Do not redistribute it without the consent of the authors.
+                <br><br>
+                <a href="https://drive.google.com/file/d/0B4ITMvAQUU6Xd054dlVQNDFkOEE/view?usp=sharing" class="btn btn-primary">Download APK</a>
+                <br><h3>Documentation</h3>
+                <ul>
+                    <li><a href="#install">How to install</a></li>
+                    <li><a href="#nav">Navigating the app</a></li>
+                    <li><a href="#rec">Recording data</a></li>
+                    <li><a href="#prev">How to preview/save data</a></li>
+                    <li><a href="#math">Math/calculations involved</a></li>
+                    <li><a href="#other">Other information</a></li>
+                </ul>
+                <h4><a class="alink" name="install"><b>How to install</b></a></h4>
+                Go into Settings > Security and turn on allowing apps from unknown sources.
+                <br><img src="img/magp1.png"/></br>
+                Transfer the downloaded APK to your Android device.  This can be done through USB or cloud storage such as Google Drive.
+                Navigate to the APK on your device and tap it.  You will be asked to install it.
+                <br><img src="img/magp2.png"/></br>
+
+                <h4><a class="alink" name="nav"><b>Navigating the app</b></a></h4>
+                <strong>Overflow Menu</strong><br>
+                The first screen you will see is for data collection.  In the top right corner you will find the Overflow Menu, which will
+                bring up a list of other things you can do within the app such as Preview Map Data, Save Data, Calibrate Sensor, or change
+                the Settings.
+                <br><br>
+                <strong>Sensor Data Display</strong><br>
+                The large green box below that displays the sensor data.  When no Threshold or Average has been set, this will display 0.00.
+                To see the live readings from the magnetometer sensor, touch and hold anywhere in this box.  The speed it will update is
+                controlled by the slider below it called the Capture Rate.
+                <br><br>
+                <strong>Capture Rate</strong><br>
+                Use the slider to control the Capture Rate and test it by touching and holding the green box.  Farthest to the left is
+                Continuous mode which will update as fast as the sensor sees data, while farthest to the right captures every 10 seconds.
+                <br><br>
+                <strong>GPS</strong><br>
+                Below the Capture Rate is the GPS switch.  It is <strong>not necessary</strong> to use the GPS.  It is there only if you
+                want to record location information for outdoor sensing.  To turn it on push the switch to the right.  If you do not have
+                GPS enabled it will ask you to do so.  The text below the GPS switch will tell you when it has a fix on your location.
+                <br><br>
+                <strong>Recording Buttons</strong><br>
+                The three buttons below the GPS switch are Take Average, Set Threshold, and Record.
+                <br><strong>Take Average: </strong> this will take the input sensor data and average it.  To stop it just
+                hit Stop Average (the same button).  The value displayed in the middle of the Sensor Data Display is the current threshold value
+                to set off alerts.
+                <br><br><strong>Set Threshold: </strong> this will read in the current sensor data and use that instance to set the threshold to set off
+                alerts.  This will not change unless you hit Set Threshold again or use the average.
+                <br><br><strong>Record: </strong> touching this button will begin recording.  It will flash on and off to remind you that is currently recording.
+                It will also display an asterisk (*) to let you know that you have unsaved data.  The data includes (when exporting to CSV) x, y, and z magnetic field data,
+                horizontal (compass), total field, average, threshold, time, color (relative), latitude, and longitude (if GPS was enabled).
+                <br><img src="img/magp3.png"/></br>
+
+                <h4><a class="alink" name="rec"><b>Recording the data</b></a></h4>
+                Once you have tapped either Take Average or Set Threshold, you are ready to start recording.  Make sure your Capture Rate is correct and
+                if you want GPS location data then the GPS should be switched to on.
+                <br><br>Tap the Record button once to begin recording, tap it again to stop.  Remember that you can check the live sensor data by touching and
+                holding the Sensor Data Display (the big colorful box).
+                <br><br><strong>Note</strong>, you may want to change some settings from the Overflow Menu such as Alert Sensitivity or the Magnetic Source Comparison.
+                The Magnetic Source comparison can have a great affect on the alerts.  You can pick from Z, Horizontal, or Total Field comparisons.  You may also want to turn off
+                the bell sound depending on your use case.
+                <h4><a class="alink" name="prev"><b>How to preview/save data</b></a></h4>
+                To preview data within the app you must have GPS locations recorded.  Assuming that you do, after you have recorded your data, tap the three
+                dots in the top right corner to open the Overflow Menu.  Tap Preview Map Data.  Your points will be displayed on the map.  If you would like a heatmap view, hit the
+                three dots while looking at the map and tap Toggle Heat Map.  Only data points that are not green will display here.
+                <br><br><img src="img/magp4.png"/></br></br>
+                If you just want to preview the CSV data, you will need to download a file explorer and navigate to the 'magnetoReadings' folder on your main storage.  I recommend
+                FX File Explorer.  Note that the data must be saved before you can view it through this method.
+                <h4><a class="alink" name="math"><b>Math/calculations involved</b></a></h4>
+                Total Field calculation:
+                <br><img src="img/eqn1.png"/></br>
+                Horizontal (Compass) calculation:
+                <br><img src="img/eqn2.png"/></br>
+                Alert Thresholds, colors go from green, light/dark yellow, light/dark orange, red, violet:
+                <br>
+                <strong>High sensitivity (% higher than threshold):</strong>
+                <br>5%, 10%, 15%, 20%, 25%, 30%
+                <br><br>
+                <strong>Normal sensitivity:</strong>
+                <br>10%, 20%, 30%, 40%, 50%, 60%
+                <br><br>
+                <strong>Low sensitivity:</strong>
+                <br>20%, 30%, 40%, 50%, 60%, 70%
+                <br>
+                <h4><a class="alink" name="other"><b>Other information</b></a></h4>
+                <strong>Notes on saving:</strong>
+                <br>You can only have one recording at a time.  That means that after a recording is done, you either have to save it or throw it away in order to start a new one.
+                You will be shown an alert if you have not saved and are trying to start a new recording.
+                <br><br>
+                Every time you save something, even if it is just sending it to GMail or Google Drive, the local files will be saved as well.  In settings, there is an option to delete these local files.  If you have done a lot of
+                recording, it might be a good idea to periodically clear this folder out when you know you no longer need them.
+                <br><br><strong>Notes on continuous Capture Rate:</strong><br>
+                You should not be able to record while using continuous Capture Rate.  If you do, it has a chance of crashing the application due to the extremely large number of data points.
+                <br><br>
+                <strong>Notes on Calibration:</strong><br>
+                Frequently bringing your device near magnetic fields and using it for this purpose can throw off the built in magnetometer.  It is easy to reset it however.  By going into the Overflow
+                and tapping Calibrate Sensor, you will be given instructions on how to do so.  Simply wave your phone in a figure 8 motion for several seconds.  This should reset the sensor.  This should likely be done
+                every couple of recordings.
+
+                <br><br>
+
+
+                <a href="#" class="back-to-top">Back to Top</a>
+
+
+            </div>
+       </div>
+
+        <div id="leftcolumn">
+        </div>
+
+
+        <div id="footer">
+        </div>
+    </div>
+</body>
+
+<script src='js/nav.js'></script>
+
+</html>
