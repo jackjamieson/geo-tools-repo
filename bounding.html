@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+<title>Geologic Web Utilities</title>
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="css/865115.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="wrapper">
+
+        <div id="header">
+        </div>
+
+        <div id="contentliquid">
+            <div id="content">
+				<h2>Bounding Box Placemark Picker</h2>
+                <a href="#" class="btn btn-default">Help Docs</a>
+                <br><br>
+					Input coordinates to use as a bounding box to select placemarks from a KML file.<br><br>
+
+					<strong>Step 1: Pick a KML:</strong><input type="file" id="fileinput" />
+
+                    <br><strong>Step 2: Choose bounding coordinates:</strong><br>Top Left Latitude: <input type='text' id='topleftlat' size="10" style="margin-right:20px;">
+                    Top left Longitude: <input type='text' id='topleftlon' size="10">
+                    <br>
+                    Bottom Right Latitude: <input type='text' id='botrightlat' size="10" style="margin-right:20px;">
+                    Bottom Right Longitude: <input type='text' id='botrightlon' size="10">
+					<br><br><a href="#" download="ExtractedPlacemarks.kml" class="btn btn-primary" id="convert" >Extract</a>
+
+
+
+            </div>
+       </div>
+
+
+        <div id="leftcolumn">
+        </div>
+
+
+        <div id="footer">
+        </div>
+    </div>
+</body>
+
+<script src='js/nav.js'></script>
+<script src='js/jquery-1.11.1.min.js'></script>
+<script src='js/bound.js'></script>
+
+</html>

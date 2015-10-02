@@ -1,7 +1,7 @@
 
 var curPage = (window.location.href.substring(window.location.href.lastIndexOf("/")+1, window.location.href.length));
 
-var isActive,isActive2,isActive3,isActive4,isActive5,isActive6,isActive7,isActive8,isActive9;
+var isActive,isActive2,isActive3,isActive4,isActive5,isActive6,isActive7,isActive8,isActive9,isActive10;
 
 if(curPage === 'index.html')
 {
@@ -32,6 +32,9 @@ if(curPage === 'postprocess.html'){
 if(curPage === 'magnetometer.html' || curPage === 'exceltoKMLMagnet.html' || curPage === 'heatmap.html'){
 	isActive9 = "active";
 }
+if(curPage === 'bounding.html'){
+	isActive10 = "active";
+}
 
 var divNav = document.getElementById('leftcolumn');
 divNav.innerHTML =
@@ -41,6 +44,7 @@ divNav.innerHTML =
 	'<li class="' + isActive7 + '"><a href="calculators.html">Calculators</a></li>' +
 	'<li class="' + isActive3 + '"><a href="3ppops.html">Dynamic 3-Point Geological-Plane Solver</a></li>' +
 	'<li class="' + isActive4 + '"><a href="formatters.html">Excel to KML Formatters</a></li>' +
+	'<li class="' + isActive10 + '"><a href="bounding.html">Bounding Box Placemark Picker</a></li>' +
 	'<li class="' + isActive9 + '"><a href="magnetometer.html">Magnetometer Tools</a></li>' +
 	'<li class="' + isActive5 + '"><a href="xmlgen.html">XML Metadata Generator</a></li>' +
 	'<li class="' + isActive6 + '"><a href="kmlfmt.html">USGS KML Formatter</a></li>' +
